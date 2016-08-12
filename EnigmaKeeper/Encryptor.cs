@@ -6,26 +6,21 @@ using System.Threading.Tasks;
 
 namespace EnigmaKeeper
 {
-    class Encryptor
+    static class Encryptor
     {
-        private string EncryptedText { get; set; }
-        public List<ulong> Keys = new List<ulong>(); //пріват зробити
-        private char[] TextCharacters { get; set; }
+        private static string EncryptedText { get; set; }
+        private static List<ulong> Keys = new List<ulong>();
 
-        public string Encrypt(string text, string key) // Цей метод для виклику шифрування (методів реалізації та їх послідовності)
+        public static bool GlobalEncrypt = false;
+
+        public static string EncryptProcess(string text, string key) // Цей метод для виклику шифрування (методів реалізації та їх послідовності)
         {
             StringToLong(key);
             DoEncrypt(text, Keys);
             return EncryptedText;
         }
 
-        //public string Decrypt(string text, string key) // Цей метод для виклику дешифрування (методів реалізації та їх послідовності)
-        //{
-        //    StringToLong(key);
-        //    return DoEncrypt(text, Keys);
-        //}
-
-        private void DoEncrypt(string text, List<ulong> keys) // Шифрування
+        private static void DoEncrypt(string text, List<ulong> keys) // Шифрування
         {
             EncryptedText = text;
 
@@ -40,7 +35,7 @@ namespace EnigmaKeeper
             }
         }
 
-        public void StringToLong(string key) // зробити пріват
+        private static void StringToLong(string key) // Keymaker
         {
             string strPreKey = null;
             Keys.Clear();
@@ -67,14 +62,14 @@ namespace EnigmaKeeper
             }
         }
 
-        private int Divider(int lenght) // записати цей результат, так буде швидше, замість того щоб кожен раз обчислювати
+        private static int Divider(int lenght) // записати цей результат, так буде швидше, замість того щоб кожен раз обчислювати
         {
             int count = 1;
             int tempLength = lenght;
             while (tempLength > 19)
             {
                 tempLength /= 2;
-                count*=2;
+                count *= 2;
 
             }
             return count;

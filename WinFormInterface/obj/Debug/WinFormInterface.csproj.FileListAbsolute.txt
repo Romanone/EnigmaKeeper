@@ -1,0 +1,9 @@
+D:\Git\EnigmaKeeper\WinFormInterface\bin\Debug\WinFormInterface.exe.config
+D:\Git\EnigmaKeeper\WinFormInterface\bin\Debug\WinFormInterface.exe
+D:\Git\EnigmaKeeper\WinFormInterface\bin\Debug\WinFormInterface.pdb
+D:\Git\EnigmaKeeper\WinFormInterface\obj\Debug\WinFormInterface.csprojResolveAssemblyReference.cache
+D:\Git\EnigmaKeeper\WinFormInterface\obj\Debug\WinFormInterface.Main.resources
+D:\Git\EnigmaKeeper\WinFormInterface\obj\Debug\WinFormInterface.Properties.Resources.resources
+D:\Git\EnigmaKeeper\WinFormInterface\obj\Debug\WinFormInterface.csproj.GenerateResource.Cache
+D:\Git\EnigmaKeeper\WinFormInterface\obj\Debug\WinFormInterface.exe
+D:\Git\EnigmaKeeper\WinFormInterface\obj\Debug\WinFormInterface.pdb

@@ -25,12 +25,19 @@ namespace EnigmaKeeper
 
         public static void CreatePassword(string name, string login, string password)
         {
+            if (String.IsNullOrEmpty(name) && String.IsNullOrEmpty(login) && String.IsNullOrEmpty(password))
+                return;
             PasswordBox.Add(new RegularPassword(name, login, password, false));
         }
 
         public static RegularPassword LoadPassword(int index)
         {
             return PasswordBox[index];
+        }
+
+        public static int GetPasswordCount()
+        {
+            return PasswordBox.Count;
         }
     }
 }

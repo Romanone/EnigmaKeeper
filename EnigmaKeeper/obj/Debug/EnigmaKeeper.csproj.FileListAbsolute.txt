@@ -10,3 +10,14 @@ D:\Code\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.csprojResolveAssemblyRe
 D:\Git\EnigmaKeeper1\EnigmaKeeper\bin\Debug\EnigmaKeeper.exe.config
 D:\Git\EnigmaKeeper1\EnigmaKeeper\obj\Debug\EnigmaKeeper.exe
 D:\Git\EnigmaKeeper1\EnigmaKeeper\obj\Debug\EnigmaKeeper.pdb
+D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.exe.config
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.exe
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.pdb
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.csprojResolveAssemblyReference.cache
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.Properties.Resources.resources
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.csproj.GenerateResource.Cache
+D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.exe
+D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.pdb
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.Main.resources
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.NewPasswordWindow.resources
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.GodPasswordWindow.resources
