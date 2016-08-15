@@ -28,7 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tvPasswordList = new System.Windows.Forms.TreeView();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_OpenNewPasswordWindow = new System.Windows.Forms.ToolStripMenuItem();
@@ -44,17 +43,12 @@
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbLogin = new System.Windows.Forms.TextBox();
             this.btnEncrypt = new System.Windows.Forms.Button();
+            this.dgvPasswordList = new System.Windows.Forms.DataGridView();
+            this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.menuStrip1.SuspendLayout();
             this.groupBox1.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPasswordList)).BeginInit();
             this.SuspendLayout();
-            // 
-            // tvPasswordList
-            // 
-            this.tvPasswordList.Location = new System.Drawing.Point(12, 27);
-            this.tvPasswordList.Name = "tvPasswordList";
-            this.tvPasswordList.Size = new System.Drawing.Size(195, 293);
-            this.tvPasswordList.TabIndex = 4;
-            this.tvPasswordList.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.tvPasswordList_AfterSelect);
             // 
             // menuStrip1
             // 
@@ -190,15 +184,30 @@
             this.btnEncrypt.UseVisualStyleBackColor = true;
             this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
             // 
+            // dgvPasswordList
+            // 
+            this.dgvPasswordList.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dgvPasswordList.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.ColumnName});
+            this.dgvPasswordList.Location = new System.Drawing.Point(12, 27);
+            this.dgvPasswordList.Name = "dgvPasswordList";
+            this.dgvPasswordList.Size = new System.Drawing.Size(195, 293);
+            this.dgvPasswordList.TabIndex = 9;
+            // 
+            // ColumnName
+            // 
+            this.ColumnName.HeaderText = "Accounts";
+            this.ColumnName.Name = "ColumnName";
+            // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(669, 373);
+            this.Controls.Add(this.dgvPasswordList);
             this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.btnLoadPasswords);
-            this.Controls.Add(this.tvPasswordList);
             this.Controls.Add(this.menuStrip1);
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Main";
@@ -207,13 +216,13 @@
             this.menuStrip1.PerformLayout();
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.dgvPasswordList)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
         }
 
         #endregion
-        private System.Windows.Forms.TreeView tvPasswordList;
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsm_OpenNewPasswordWindow;
@@ -229,6 +238,8 @@
         private System.Windows.Forms.TextBox tbName;
         private System.Windows.Forms.Panel panel1;
         private System.Windows.Forms.Button btnEncrypt;
+        private System.Windows.Forms.DataGridView dgvPasswordList;
+        private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
     }
 }
 

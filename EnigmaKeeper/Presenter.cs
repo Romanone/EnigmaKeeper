@@ -9,9 +9,16 @@ namespace EnigmaKeeper
     class Presenter
     {
         NewPasswordWindow newPasswordWindow = null;
+        GodPasswordWindow godPassword = null;
         Model model = null;
         Main main = null;
 
+        public Presenter(GodPasswordWindow godPassword)
+        {
+            this.godPassword = godPassword;
+            this.model = new Model();
+            this.godPassword.NewGodPassword += new EventHandler(godPasswordWindow_GodPasswordEvent);
+        }
         public Presenter(NewPasswordWindow newPasswordWindow)
         {
             this.newPasswordWindow = newPasswordWindow;
@@ -30,10 +37,17 @@ namespace EnigmaKeeper
             this.model.CreatePassword(newPasswordWindow.Name, newPasswordWindow.Login, newPasswordWindow.Password);
         }
 
-        void main_EncryptEvent(object sender, EventArgs e)
+        void godPasswordWindow_GodPasswordEvent(object sender, EventArgs e)
         {
-            //this.model.EncryptField(text, main.Key);
+            this.model.  CreatePassword(newPasswordWindow.Name, newPasswordWindow.Login, newPasswordWindow.Password);
         }
+
+        void main_EncryptEvent(object sender, EventArgs e) //TODO todotest
+        {
+            //this.model.EncryptField(text, main.Key);  godPassword_NewPasswordEvent
+        }
+
+
 
 
 

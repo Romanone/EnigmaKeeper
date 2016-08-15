@@ -15,6 +15,8 @@ namespace EnigmaKeeper
         public string Password { get; set; }
         public bool Encrypted { get; set; }
 
+        public static string GodPassword { get; set; } // Main password
+
         private RegularPassword(string name, string login, string password, bool encrypted)
         {
             Name = name;

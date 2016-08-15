@@ -19,19 +19,12 @@ namespace EnigmaKeeper
         }
 
         public string Key { get; set; }
-        //private static string name;
-        //private static string login;
-        //private static string password;
-
         public event EventHandler Encrypt = null;
 
         private void EncryptProcess(object sender, EventArgs e)
         {
             Encrypt.Invoke(sender, e);
         }
-
-
-
 
         private void tsm_OpenNewPasswordWindow_Click(object sender, EventArgs e)
         {
@@ -41,32 +34,13 @@ namespace EnigmaKeeper
 
         private void btnLoadPasswords_Click(object sender, EventArgs e)
         {
-            tvPasswordList.Nodes.Clear();
+            dgvPasswordList.Rows.Clear();
             for (int i = 0; i < RegularPassword.GetPasswordCount(); i++)
             {
                 RegularPassword.LoadPassword(i);
-                tvPasswordList.Nodes.Add(RegularPassword.LoadPassword(i).Name);
+                this.dgvPasswordList.Rows.Add();
+                dgvPasswordList.Rows[0].Cells[i].Value = (RegularPassword.LoadPassword(i).Name);
             }
-
-
-        }
-
-        private void tvPasswordList_AfterSelect(object sender, TreeViewEventArgs e)
-        {
-            RegularPassword selectedPassword = RegularPassword.LoadPassword(Convert.ToInt32(tvPasswordList.SelectedNode));
-            //name = selectedPassword.Name;
-            //login = selectedPassword.Login;
-            //password = selectedPassword.Password;
-
-            ReadUI();
-        }
-        // private bool encrypted; // ???
-
-        void ReadUI()
-        {
-            //tbName.Text = name;
-            //tbLogin.Text = login;
-            //tbPassword.Text = password;
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)

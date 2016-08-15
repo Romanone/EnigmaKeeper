@@ -10,6 +10,7 @@ namespace EnigmaKeeper
     {
         string EncryptField(string text, string key);
         void CreatePassword(string name, string login, string password);
+        void SetGodPassword();
 
 
     }
@@ -24,6 +25,11 @@ namespace EnigmaKeeper
         public void CreatePassword(string name, string login, string password)
         {
             RegularPassword.CreatePassword(name, login, password);
+        }
+
+        public void SetGodPassword()
+        {
+            RegularPassword.GodPassword = GodPasswordWindow.GodPassword;
         }
 
     }
