@@ -132,6 +132,7 @@
             this.Controls.Add(this.tbLogin);
             this.Controls.Add(this.tbName);
             this.Name = "NewPasswordWindow";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "New Password";
             this.ResumeLayout(false);
             this.PerformLayout();

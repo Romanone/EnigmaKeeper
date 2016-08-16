@@ -4,7 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace EnigmaKeeper
+namespace EnigmaKeeper.Models
 {
     class RegularPassword : IPassword
     {
@@ -25,21 +25,33 @@ namespace EnigmaKeeper
             Encrypted = encrypted;
         }
 
-        public static void CreatePassword(string name, string login, string password)
+        internal static void CreatePassword(string name, string login, string password)
         {
             if (String.IsNullOrEmpty(name) && String.IsNullOrEmpty(login) && String.IsNullOrEmpty(password))
                 return;
             PasswordBox.Add(new RegularPassword(name, login, password, false));
         }
 
-        public static RegularPassword LoadPassword(int index)
+        internal static RegularPassword LoadPassword(int index)
         {
             return PasswordBox[index];
         }
 
-        public static int GetPasswordCount()
+        internal static int GetPasswordCount()
         {
             return PasswordBox.Count;
+        }
+
+        internal static RegularPassword SearchPassword(string name)
+        {
+            foreach (var item in PasswordBox)
+            {
+                if(item.Name == name)
+                {
+                    return item;
+                }    
+            }
+            return null;
         }
     }
 }

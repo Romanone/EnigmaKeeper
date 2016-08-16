@@ -27,8 +27,8 @@ namespace EnigmaKeeper
         private void SavePassword(object sender, EventArgs e)
         {
             Name = tbName.Text;
-            Login = tbName.Text;
-            Password = tbName.Text;
+            Login = tbLogin.Text;
+            Password = tbPassword.Text;
             NewPassword.Invoke(sender, e);
         }
 

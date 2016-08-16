@@ -24,6 +24,7 @@ namespace EnigmaKeeper
         private void btnSaveGodPassword_Click(object sender, EventArgs e)
         {
             SaveGodPassword(sender, e);
+            this.Close();
         }
     }
 }
