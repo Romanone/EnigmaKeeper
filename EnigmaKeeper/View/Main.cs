@@ -11,15 +11,17 @@ namespace EnigmaKeeper
             new Presenter(this);            
         }
 
-        Presenter pr = new Presenter();
+        Presenter presenter = new Presenter();
         public string Key { get; set; }
         public event EventHandler Encrypt = null;
         public event EventHandler Search = null;
+        public event EventHandler LoadPassword = null;
 
         public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
         public string PasswordName { get; set; }
+        public int Index { get; set; }
 
         // Event methods
         private void EncryptProcess(object sender, EventArgs e)
@@ -41,19 +43,20 @@ namespace EnigmaKeeper
         private void btnLoadPasswords_Click(object sender, EventArgs e)
         {
             dgvPasswordList.Rows.Clear();
-            for (int i = 0; i < pr.PasswordConter(); i++)
+            for (Index = 0; Index < presenter.PasswordConter(); Index++)
             {
+                LoadPassword.Invoke(sender, e);
                 dgvPasswordList.Rows.Add();
-                dgvPasswordList.Rows[i].Cells[0].Value = (pr.LoadPasswords(i).Name);
+                dgvPasswordList.Rows[Index].Cells[0].Value = Name;
             }
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < pr.PasswordConter(); i++)
+            for (int i = 0; i < presenter.PasswordConter(); i++)
             {
                 EncryptProcess(sender, e);
-                pr.LoadPasswords(i);
+                presenter.LoadPasswordPresenter(i);
             }
             
         }
@@ -67,11 +70,11 @@ namespace EnigmaKeeper
         private void dgvPasswordList_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             
-            PasswordName = (string)dgvPasswordList.CurrentRow.Cells[0].Value;
-            var Password = RegularPassword.SearchPassword(PasswordName);
-            tbName.Text = Password.Name;
-            tbLogin.Text = Password.Login;
-            tbPassword.Text = Password.Password;
+            //PasswordName = (string)dgvPasswordList.CurrentRow.Cells[0].Value;
+            //var Password = RegularPassword.SearchPassword(PasswordName);
+            //tbName.Text = Password.Name;
+            //tbLogin.Text = Password.Login;
+            //tbPassword.Text = Password.Password;
         }
 
 

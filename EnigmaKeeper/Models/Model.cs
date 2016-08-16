@@ -15,6 +15,11 @@ namespace EnigmaKeeper.Models
 
     class Model : IModel
     {
+        public string Name { get; set; } //GOOD
+        public string Login { get; set; } //GOOD
+        public string Password { get; set; } //GOOD
+        public bool Encrypted { get; set; } //GOOD
+
         internal int PasswordCount { get; private set; }
 
         public string EncryptField(string text, string key)
@@ -24,7 +29,7 @@ namespace EnigmaKeeper.Models
 
         public void CreatePassword(string name, string login, string password)
         {
-            RegularPassword.CreatePassword(name, login, password);
+            RegularPassword.AddPassword(name, login, password);
         }
 
         public void SetGodPassword(string godPassword)
@@ -43,9 +48,16 @@ namespace EnigmaKeeper.Models
             return PasswordCount;
         }
 
-        public RegularPassword LoadPasswords(int index)
+        //public RegularPassword LoadPasswords(int index)
+        //{
+        //    return RegularPassword.GetPassword(index);
+        //}
+
+        public void LoadPassword(int index)
         {
-            return RegularPassword.LoadPassword(index);
+            Name = RegularPassword.GetPassword(index).Name;
+            Login = RegularPassword.GetPassword(index).Login;
+            Password = RegularPassword.GetPassword(index).Password;
         }
 
     }

@@ -22,9 +22,9 @@ namespace EnigmaKeeper
         public string Login { get; set; }
         public string Password { get; set; }
 
-        public event EventHandler NewPassword = null;
+        public event EventHandler NewPassword = null; //GOOD
 
-        private void SavePassword(object sender, EventArgs e)
+        private void SavePassword(object sender, EventArgs e) //GOOD
         {
             Name = tbName.Text;
             Login = tbLogin.Text;
@@ -32,18 +32,18 @@ namespace EnigmaKeeper
             NewPassword.Invoke(sender, e);
         }
 
-        private void btnSavePassword_Click(object sender, EventArgs e)
+        private void btnSavePassword_Click(object sender, EventArgs e) //GOOD
         {
             SavePassword(sender, e);
         }
 
-        private void btnSaveAndClosePassword_Click(object sender, EventArgs e)
+        private void btnSaveAndClosePassword_Click(object sender, EventArgs e) //GOOD
         {
             SavePassword(sender, e);
             this.Close();
         }
         
-        private void btnCancel_Click(object sender, EventArgs e)
+        private void btnCancel_Click(object sender, EventArgs e) //GOOD
         {
             this.Close();
         }        

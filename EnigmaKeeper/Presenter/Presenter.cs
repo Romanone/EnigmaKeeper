@@ -11,10 +11,7 @@ namespace EnigmaKeeper
         Main main = null;
 
         #region *** Constructors ***
-        public Presenter()
-        {
-
-        }
+        public Presenter() { }
         public Presenter(GodPasswordWindow godPassword)
         {
             this.godPassword = godPassword;
@@ -33,6 +30,15 @@ namespace EnigmaKeeper
             this.model = new Model();
             this.main.Encrypt += new EventHandler(main_EncryptEvent);
             this.main.Search += new EventHandler(main_SearchPasswordEvent);
+            this.main.LoadPassword += Main_LoadPassword;
+        }
+
+        private void Main_LoadPassword(object sender, EventArgs e)
+        {
+            LoadPasswordPresenter(main.Index);
+            main.Name = model.Name;
+            main.Login = model.Login;
+            main.Password = model.Password;
         }
         #endregion
 
@@ -47,13 +53,13 @@ namespace EnigmaKeeper
             this.model.SetGodPassword(GodPasswordWindow.GodPassword);
         }
 
-        void main_EncryptEvent(object sender, EventArgs e) //TODO todotest
+        void main_EncryptEvent(object sender, EventArgs e)
         {
             for (int i = 0; i < RegularPassword.GetPasswordCount(); i++)
             {
-                RegularPassword.LoadPassword(i).Name = this.model.EncryptField(RegularPassword.LoadPassword(i).Name, RegularPassword.GodPassword);
-                RegularPassword.LoadPassword(i).Login = this.model.EncryptField(RegularPassword.LoadPassword(i).Login, RegularPassword.GodPassword);
-                RegularPassword.LoadPassword(i).Password = this.model.EncryptField(RegularPassword.LoadPassword(i).Password, RegularPassword.GodPassword);//TODO тут переробити через модель
+                RegularPassword.GetPassword(i).Name = this.model.EncryptField(RegularPassword.GetPassword(i).Name, RegularPassword.GodPassword);
+                RegularPassword.GetPassword(i).Login = this.model.EncryptField(RegularPassword.GetPassword(i).Login, RegularPassword.GodPassword);
+                RegularPassword.GetPassword(i).Password = this.model.EncryptField(RegularPassword.GetPassword(i).Password, RegularPassword.GodPassword);//TODO тут переробити через модель
             }
         }
 
@@ -70,15 +76,9 @@ namespace EnigmaKeeper
             return model.PasswordCount;
         }
 
-        public Model LoadPasswords(int index) // Повертає імя, логін, пароль
+        public void LoadPasswordPresenter(int index) // Повертає імя, логін, пароль
         {
-            return model.LoadPasswords(index);
+            model.LoadPassword(index);
         }
-
-        public RegularPassword
-
-
-
-
     }
 }

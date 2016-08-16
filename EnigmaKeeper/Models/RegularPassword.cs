@@ -8,7 +8,7 @@ namespace EnigmaKeeper.Models
 {
     class RegularPassword : IPassword
     {
-        private static List<RegularPassword> PasswordBox = new List<RegularPassword>();
+        private static List<RegularPassword> PasswordBox = new List<RegularPassword>(); //GOOD
 
         public string Name { get; set; }
         public string Login { get; set; }
@@ -17,7 +17,7 @@ namespace EnigmaKeeper.Models
 
         public static string GodPassword { get; set; } // Main password
 
-        private RegularPassword(string name, string login, string password, bool encrypted)
+        private RegularPassword(string name, string login, string password, bool encrypted) //GOOD
         {
             Name = name;
             Login = login;
@@ -25,14 +25,14 @@ namespace EnigmaKeeper.Models
             Encrypted = encrypted;
         }
 
-        internal static void CreatePassword(string name, string login, string password)
+        internal static void AddPassword(string name, string login, string password) //GOOD
         {
             if (String.IsNullOrEmpty(name) && String.IsNullOrEmpty(login) && String.IsNullOrEmpty(password))
                 return;
             PasswordBox.Add(new RegularPassword(name, login, password, false));
         }
 
-        internal static RegularPassword LoadPassword(int index)
+        internal static RegularPassword GetPassword(int index)
         {
             return PasswordBox[index];
         }
