@@ -3,6 +3,7 @@ using System.Windows.Forms;
 
 namespace EnigmaKeeper
 {
+    public delegate void AddGodPassword(string godPassword);
     public partial class GodPasswordWindow : Form
     {
         public GodPasswordWindow()
@@ -11,14 +12,11 @@ namespace EnigmaKeeper
             new Presenter(this);
         }
 
-        public static string GodPassword { get; set; }
-
-        public event EventHandler NewGodPassword = null;
+        public event AddGodPassword AddGodPasswordEvent = null;
 
         private void SaveGodPassword(object sender, EventArgs e)
         {
-            GodPassword = tbGodPassword.Text;
-            NewGodPassword.Invoke(sender, e);
+            AddGodPasswordEvent.Invoke(tbGodPassword.Text);
         }
 
         private void btnSaveGodPassword_Click(object sender, EventArgs e)

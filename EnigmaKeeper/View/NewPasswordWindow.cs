@@ -10,6 +10,8 @@ using System.Windows.Forms;
 
 namespace EnigmaKeeper
 {
+    public delegate void AddPassword(string name, string login, string password);
+
     public partial class NewPasswordWindow : Form
     {
         public NewPasswordWindow()
@@ -18,32 +20,25 @@ namespace EnigmaKeeper
             new Presenter(this);
         }
 
-        public string Name { get; set; }
-        public string Login { get; set; }
-        public string Password { get; set; }
+        public event AddPassword AddPasswordEvent = null;
 
-        public event EventHandler NewPassword = null; //GOOD
-
-        private void SavePassword(object sender, EventArgs e) //GOOD
+        private void AddPassword(object sender, EventArgs e)
         {
-            Name = tbName.Text;
-            Login = tbLogin.Text;
-            Password = tbPassword.Text;
-            NewPassword.Invoke(sender, e);
+            AddPasswordEvent.Invoke(tbName.Text, tbLogin.Text, tbPassword.Text);
         }
 
-        private void btnSavePassword_Click(object sender, EventArgs e) //GOOD
+        private void btnSavePassword_Click(object sender, EventArgs e)
         {
-            SavePassword(sender, e);
+            AddPassword(sender, e);
         }
 
-        private void btnSaveAndClosePassword_Click(object sender, EventArgs e) //GOOD
+        private void btnSaveAndClosePassword_Click(object sender, EventArgs e)
         {
-            SavePassword(sender, e);
+            AddPassword(sender, e);
             this.Close();
         }
         
-        private void btnCancel_Click(object sender, EventArgs e) //GOOD
+        private void btnCancel_Click(object sender, EventArgs e)
         {
             this.Close();
         }        

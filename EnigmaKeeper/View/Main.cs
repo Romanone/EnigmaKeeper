@@ -1,25 +1,32 @@
 ﻿using System;
 using System.Windows.Forms;
+using EnigmaKeeper.DataAccess;
 
 namespace EnigmaKeeper
 {
     public partial class Main : Form
     {
+        public delegate object LoadPassword(int index);
+
         public Main()
         {
             InitializeComponent();
             new Presenter(this);            
         }
 
-        Presenter presenter = new Presenter();
+        Presenter Presenter = new Presenter();
+        //IPassword Password = new ConcretePassword();
+
+        
         public string Key { get; set; }
         public event EventHandler Encrypt = null;
         public event EventHandler Search = null;
-        public event EventHandler LoadPassword = null;
+        public event LoadPassword LoadPasswordEvent = null;
+
 
         public string Name { get; set; }
         public string Login { get; set; }
-        public string Password { get; set; }
+        //public string Password { get; set; }
         public string PasswordName { get; set; }
         public int Index { get; set; }
 
@@ -43,21 +50,21 @@ namespace EnigmaKeeper
         private void btnLoadPasswords_Click(object sender, EventArgs e)
         {
             dgvPasswordList.Rows.Clear();
-            for (Index = 0; Index < presenter.PasswordConter(); Index++)
+            for (Index = 0; Index < ConcretePassword.GetPasswordCount(); Index++)
             {
-                LoadPassword.Invoke(sender, e);
                 dgvPasswordList.Rows.Add();
-                dgvPasswordList.Rows[Index].Cells[0].Value = Name;
+                IPassword pswrd = LoadPasswordEvent.Invoke(Index) as IPassword;
+                dgvPasswordList.Rows[Index].Cells[0].Value = pswrd.Name;
             }
         }
 
         private void btnEncrypt_Click(object sender, EventArgs e)
         {
-            for (int i = 0; i < presenter.PasswordConter(); i++)
-            {
-                EncryptProcess(sender, e);
-                presenter.LoadPasswordPresenter(i);
-            }
+            //for (int i = 0; i < presenter.PasswordCounter(); i++)
+            //{
+            //    EncryptProcess(sender, e);
+            //    presenter.LoadPasswordPresenter(i);
+            //}
             
         }
 

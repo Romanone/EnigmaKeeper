@@ -21,3 +21,5 @@ D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.pdb
 D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.Main.resources
 D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.NewPasswordWindow.resources
 D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.GodPasswordWindow.resources
+D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.DataAccess.dll
+D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.DataAccess.pdb

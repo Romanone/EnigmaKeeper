@@ -2,63 +2,45 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
+using EnigmaKeeper.DataAccess;
+using EnigmaKeeper.Models;
 
 namespace EnigmaKeeper.Models
 {
     public interface IModel
     {
-        string EncryptField(string text, string key);
-        void CreatePassword(string name, string login, string password);
+        void AddPassword(string name, string login, string password);
+        ConcretePassword GetPassword(int index);
         void SetGodPassword(string godPassword);
     }
 
     class Model : IModel
     {
-        public string Name { get; set; } //GOOD
-        public string Login { get; set; } //GOOD
-        public string Password { get; set; } //GOOD
-        public bool Encrypted { get; set; } //GOOD
+        private ConcretePassword password = new ConcretePassword();
 
-        internal int PasswordCount { get; private set; }
+        public void AddPassword(string name, string login, string password)
+        {
+            this.password.AddPassword(name, login, password);
+        }
+
+        public ConcretePassword GetPassword(int index)
+        {
+            return password.GetPassword(index);
+        }
 
         public string EncryptField(string text, string key)
         {
-             return Encryptor.EncryptProcess(text, key);
+            return Encryptor.EncryptProcess(text, key);
         }
 
-        public void CreatePassword(string name, string login, string password)
+        public int GetPasswordCount()
         {
-            RegularPassword.AddPassword(name, login, password);
+            return ConcretePassword.GetPasswordCount();
         }
 
         public void SetGodPassword(string godPassword)
         {
-            RegularPassword.GodPassword = godPassword;
+            ConcretePassword.GodPassword = godPassword;
         }
-
-        public RegularPassword SearchPassword(string name)
-        {
-            return RegularPassword.SearchPassword(name);
-        }
-
-        public int PasswordsCounter()
-        {
-            PasswordCount = RegularPassword.GetPasswordCount();
-            return PasswordCount;
-        }
-
-        //public RegularPassword LoadPasswords(int index)
-        //{
-        //    return RegularPassword.GetPassword(index);
-        //}
-
-        public void LoadPassword(int index)
-        {
-            Name = RegularPassword.GetPassword(index).Name;
-            Login = RegularPassword.GetPassword(index).Login;
-            Password = RegularPassword.GetPassword(index).Password;
-        }
-
     }
 }

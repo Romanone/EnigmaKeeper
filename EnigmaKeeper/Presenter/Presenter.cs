@@ -1,5 +1,6 @@
 ﻿using System;
 using EnigmaKeeper.Models;
+using EnigmaKeeper.DataAccess;
 
 namespace EnigmaKeeper
 {
@@ -7,8 +8,9 @@ namespace EnigmaKeeper
     {
         NewPasswordWindow newPasswordWindow = null;
         GodPasswordWindow godPassword = null;
-        Model model = null;
+        IModel model = null;
         Main main = null;
+        //IPassword password = null;
 
         #region *** Constructors ***
         public Presenter() { }
@@ -16,69 +18,72 @@ namespace EnigmaKeeper
         {
             this.godPassword = godPassword;
             this.model = new Model();
-            this.godPassword.NewGodPassword += new EventHandler(godPasswordWindow_GodPasswordEvent);
+            this.godPassword.AddGodPasswordEvent += GodPassword_AddGodPasswordEvent;
         }
+
         public Presenter(NewPasswordWindow newPasswordWindow)
         {
             this.newPasswordWindow = newPasswordWindow;
             this.model = new Model();
-            this.newPasswordWindow.NewPassword += new EventHandler(newPasswordWindow_NewPasswordEvent);
+            this.newPasswordWindow.AddPasswordEvent += NewPasswordWindow_AddPasswordEvent;
         }
+
         public Presenter(Main main)
         {
             this.main = main;
             this.model = new Model();
-            this.main.Encrypt += new EventHandler(main_EncryptEvent);
-            this.main.Search += new EventHandler(main_SearchPasswordEvent);
-            this.main.LoadPassword += Main_LoadPassword;
-        }
-
-        private void Main_LoadPassword(object sender, EventArgs e)
-        {
-            LoadPasswordPresenter(main.Index);
-            main.Name = model.Name;
-            main.Login = model.Login;
-            main.Password = model.Password;
+            //this.main.Encrypt += new EventHandler(main_EncryptEvent);
+            //this.main.Search += new EventHandler(main_SearchPasswordEvent);
+            this.main.LoadPasswordEvent += Main_LoadPasswordEvent;
         }
         #endregion
 
         #region *** Event Handler ***
-        void newPasswordWindow_NewPasswordEvent(object sender, EventArgs e)
+        
+        private IPassword Main_LoadPasswordEvent(int index)
         {
-            this.model.CreatePassword(newPasswordWindow.Name, newPasswordWindow.Login, newPasswordWindow.Password);
+            return model.GetPassword(index) as IPassword;
         }
 
-        void godPasswordWindow_GodPasswordEvent(object sender, EventArgs e)
+        private void NewPasswordWindow_AddPasswordEvent(string name, string login, string password)
         {
-            this.model.SetGodPassword(GodPasswordWindow.GodPassword);
+            model.AddPassword(name, login, password);
         }
 
-        void main_EncryptEvent(object sender, EventArgs e)
+        private void GodPassword_AddGodPasswordEvent(string godPassword)
         {
-            for (int i = 0; i < RegularPassword.GetPasswordCount(); i++)
-            {
-                RegularPassword.GetPassword(i).Name = this.model.EncryptField(RegularPassword.GetPassword(i).Name, RegularPassword.GodPassword);
-                RegularPassword.GetPassword(i).Login = this.model.EncryptField(RegularPassword.GetPassword(i).Login, RegularPassword.GodPassword);
-                RegularPassword.GetPassword(i).Password = this.model.EncryptField(RegularPassword.GetPassword(i).Password, RegularPassword.GodPassword);//TODO тут переробити через модель
-            }
+            model.SetGodPassword(godPassword);
         }
 
-        void main_SearchPasswordEvent(object sender, EventArgs e)
-        {
-            main.Name = this.model.SearchPassword(main.PasswordName).Name;
-            main.Login = this.model.SearchPassword(main.PasswordName).Login;
-            main.Password = this.model.SearchPassword(main.PasswordName).Password;
-        }
+        //void main_EncryptEvent(object sender, EventArgs e)
+        //{
+        //    for (int i = 0; i < RegularPassword.GetPasswordCount(); i++)
+        //    {
+        //        model.LoadPassword(i);
+        //        model.EncryptField(model.Name, main.Password);
+        //        model.EncryptField(model.Login, main.Password);
+        //        model.EncryptField(model.Password, main.Password);
+        //    }
+        //}
+
+        //void main_SearchPasswordEvent(object sender, EventArgs e)
+        //{
+        //    main.Name = this.model.SearchPassword(main.PasswordName).Name;
+        //    main.Login = this.model.SearchPassword(main.PasswordName).Login;
+        //    main.Password = this.model.SearchPassword(main.PasswordName).Password;
+        //}
         #endregion
 
-        public int PasswordConter() // Повертає кількість паролей в списку
-        {
-            return model.PasswordCount;
-        }
+        //public int PasswordCounter() // Повертає кількість паролей в списку
+        //{
+        //    model.PasswordsCounter();
+        //    return model.PasswordCount;
+        //}
 
-        public void LoadPasswordPresenter(int index) // Повертає імя, логін, пароль
-        {
-            model.LoadPassword(index);
-        }
+        //public void LoadPasswordPresenter(int index) // Повертає імя, логін, пароль
+        //{
+        //    model.LoadPassword(index);
+        //}
+
     }
 }
