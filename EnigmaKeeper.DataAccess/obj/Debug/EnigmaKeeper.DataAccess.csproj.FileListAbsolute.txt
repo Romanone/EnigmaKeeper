@@ -2,3 +2,4 @@ D:\Git\EnigmaKeeper\EnigmaKeeper.DataAccess\bin\Debug\EnigmaKeeper.DataAccess.dl
 D:\Git\EnigmaKeeper\EnigmaKeeper.DataAccess\bin\Debug\EnigmaKeeper.DataAccess.pdb
 D:\Git\EnigmaKeeper\EnigmaKeeper.DataAccess\obj\Debug\EnigmaKeeper.DataAccess.dll
 D:\Git\EnigmaKeeper\EnigmaKeeper.DataAccess\obj\Debug\EnigmaKeeper.DataAccess.pdb
+D:\Git\EnigmaKeeper\EnigmaKeeper.DataAccess\obj\Debug\EnigmaKeeper.DataAccess.csprojResolveAssemblyReference.cache

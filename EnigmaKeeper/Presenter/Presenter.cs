@@ -32,18 +32,41 @@ namespace EnigmaKeeper
         {
             this.main = main;
             this.model = new Model();
-            //this.main.Encrypt += new EventHandler(main_EncryptEvent);
-            //this.main.Search += new EventHandler(main_SearchPasswordEvent);
+
+            this.main.ReturnByPasswordEvent += Main_ReturnByPasswordEvent;
             this.main.LoadPasswordEvent += Main_LoadPasswordEvent;
+            this.main.EncryptAllEvent += Main_EncryptAllEvent;
+            this.main.DecryptAllEvent += Main_DecryptAllEvent;
         }
+
+
         #endregion
 
-        #region *** Event Handler ***
-        
+        #region *** Main Event Handler ***
+
+        private void Main_DecryptAllEvent(object sender, EventArgs e)
+        {
+            model.DecryptAll();
+        }
+
+        private void Main_EncryptAllEvent(object sender, EventArgs e)
+        {
+            model.EncryptAll();
+        }
+
+        private object Main_ReturnByPasswordEvent(string name)
+        {
+            return model.ReturnByName(name);
+        }
+
         private IPassword Main_LoadPasswordEvent(int index)
         {
             return model.GetPassword(index) as IPassword;
         }
+
+        #endregion
+
+
 
         private void NewPasswordWindow_AddPasswordEvent(string name, string login, string password)
         {
@@ -55,35 +78,11 @@ namespace EnigmaKeeper
             model.SetGodPassword(godPassword);
         }
 
-        //void main_EncryptEvent(object sender, EventArgs e)
-        //{
-        //    for (int i = 0; i < RegularPassword.GetPasswordCount(); i++)
-        //    {
-        //        model.LoadPassword(i);
-        //        model.EncryptField(model.Name, main.Password);
-        //        model.EncryptField(model.Login, main.Password);
-        //        model.EncryptField(model.Password, main.Password);
-        //    }
-        //}
-
-        //void main_SearchPasswordEvent(object sender, EventArgs e)
-        //{
-        //    main.Name = this.model.SearchPassword(main.PasswordName).Name;
-        //    main.Login = this.model.SearchPassword(main.PasswordName).Login;
-        //    main.Password = this.model.SearchPassword(main.PasswordName).Password;
-        //}
-        #endregion
-
-        //public int PasswordCounter() // Повертає кількість паролей в списку
-        //{
-        //    model.PasswordsCounter();
-        //    return model.PasswordCount;
-        //}
-
-        //public void LoadPasswordPresenter(int index) // Повертає імя, логін, пароль
-        //{
-        //    model.LoadPassword(index);
-        //}
+        public int GetPasswordCount()
+        {
+            model = new Model(); //TODO: do it
+            return model.GetPasswordCount();
+        }
 
     }
 }

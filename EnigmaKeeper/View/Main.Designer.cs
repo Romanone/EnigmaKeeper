@@ -31,21 +31,20 @@
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.tsm_OpenNewPasswordWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.tsm_OpenGodPasswordWindow = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLoadPasswords = new System.Windows.Forms.Button();
             this.tbName = new System.Windows.Forms.TextBox();
-            this.label4 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label1 = new System.Windows.Forms.Label();
-            this.textBox4 = new System.Windows.Forms.TextBox();
             this.tbPassword = new System.Windows.Forms.TextBox();
             this.tbLogin = new System.Windows.Forms.TextBox();
-            this.btnEncrypt = new System.Windows.Forms.Button();
             this.dgvPasswordList = new System.Windows.Forms.DataGridView();
             this.ColumnName = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.statusStrip1 = new System.Windows.Forms.StatusStrip();
             this.gbDetails = new System.Windows.Forms.GroupBox();
-            this.tsm_OpenGodPasswordWindow = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnEncryptAll = new System.Windows.Forms.Button();
+            this.btnDecryptAll = new System.Windows.Forms.Button();
             this.menuStrip1.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPasswordList)).BeginInit();
             this.gbDetails.SuspendLayout();
@@ -77,9 +76,16 @@
             this.tsm_OpenNewPasswordWindow.Text = "Add new password";
             this.tsm_OpenNewPasswordWindow.Click += new System.EventHandler(this.tsm_OpenNewPasswordWindow_Click);
             // 
+            // tsm_OpenGodPasswordWindow
+            // 
+            this.tsm_OpenGodPasswordWindow.Name = "tsm_OpenGodPasswordWindow";
+            this.tsm_OpenGodPasswordWindow.Size = new System.Drawing.Size(186, 22);
+            this.tsm_OpenGodPasswordWindow.Text = "Create God password";
+            this.tsm_OpenGodPasswordWindow.Click += new System.EventHandler(this.tsm_OpenGodPasswordWindow_Click);
+            // 
             // btnLoadPasswords
             // 
-            this.btnLoadPasswords.Location = new System.Drawing.Point(285, 252);
+            this.btnLoadPasswords.Location = new System.Drawing.Point(222, 158);
             this.btnLoadPasswords.Name = "btnLoadPasswords";
             this.btnLoadPasswords.Size = new System.Drawing.Size(195, 23);
             this.btnLoadPasswords.TabIndex = 6;
@@ -93,15 +99,6 @@
             this.tbName.Name = "tbName";
             this.tbName.Size = new System.Drawing.Size(256, 20);
             this.tbName.TabIndex = 0;
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 100);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(35, 13);
-            this.label4.TabIndex = 7;
-            this.label4.Text = "label4";
             // 
             // label3
             // 
@@ -130,13 +127,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Name";
             // 
-            // textBox4
-            // 
-            this.textBox4.Location = new System.Drawing.Point(72, 97);
-            this.textBox4.Name = "textBox4";
-            this.textBox4.Size = new System.Drawing.Size(256, 20);
-            this.textBox4.TabIndex = 3;
-            // 
             // tbPassword
             // 
             this.tbPassword.Location = new System.Drawing.Point(72, 71);
@@ -151,16 +141,6 @@
             this.tbLogin.Size = new System.Drawing.Size(256, 20);
             this.tbLogin.TabIndex = 1;
             // 
-            // btnEncrypt
-            // 
-            this.btnEncrypt.Location = new System.Drawing.Point(285, 281);
-            this.btnEncrypt.Name = "btnEncrypt";
-            this.btnEncrypt.Size = new System.Drawing.Size(195, 23);
-            this.btnEncrypt.TabIndex = 8;
-            this.btnEncrypt.Text = "Encrypt/Decrypt";
-            this.btnEncrypt.UseVisualStyleBackColor = true;
-            this.btnEncrypt.Click += new System.EventHandler(this.btnEncrypt_Click);
-            // 
             // dgvPasswordList
             // 
             this.dgvPasswordList.AllowUserToAddRows = false;
@@ -172,7 +152,7 @@
             this.dgvPasswordList.Name = "dgvPasswordList";
             this.dgvPasswordList.ReadOnly = true;
             this.dgvPasswordList.RowHeadersVisible = false;
-            this.dgvPasswordList.Size = new System.Drawing.Size(195, 461);
+            this.dgvPasswordList.Size = new System.Drawing.Size(195, 360);
             this.dgvPasswordList.TabIndex = 9;
             this.dgvPasswordList.CellClick += new System.Windows.Forms.DataGridViewCellEventHandler(this.dgvPasswordList_CellClick);
             // 
@@ -185,7 +165,7 @@
             // 
             // statusStrip1
             // 
-            this.statusStrip1.Location = new System.Drawing.Point(0, 491);
+            this.statusStrip1.Location = new System.Drawing.Point(0, 396);
             this.statusStrip1.Name = "statusStrip1";
             this.statusStrip1.Size = new System.Drawing.Size(563, 22);
             this.statusStrip1.TabIndex = 10;
@@ -195,34 +175,46 @@
             // 
             this.gbDetails.Controls.Add(this.label1);
             this.gbDetails.Controls.Add(this.tbName);
-            this.gbDetails.Controls.Add(this.textBox4);
             this.gbDetails.Controls.Add(this.tbPassword);
             this.gbDetails.Controls.Add(this.tbLogin);
             this.gbDetails.Controls.Add(this.label2);
-            this.gbDetails.Controls.Add(this.label4);
             this.gbDetails.Controls.Add(this.label3);
             this.gbDetails.Location = new System.Drawing.Point(213, 27);
             this.gbDetails.Name = "gbDetails";
-            this.gbDetails.Size = new System.Drawing.Size(341, 125);
+            this.gbDetails.Size = new System.Drawing.Size(341, 101);
             this.gbDetails.TabIndex = 11;
             this.gbDetails.TabStop = false;
             this.gbDetails.Text = "Details";
             // 
-            // tsm_OpenGodPasswordWindow
+            // btnEncryptAll
             // 
-            this.tsm_OpenGodPasswordWindow.Name = "tsm_OpenGodPasswordWindow";
-            this.tsm_OpenGodPasswordWindow.Size = new System.Drawing.Size(186, 22);
-            this.tsm_OpenGodPasswordWindow.Text = "Create God password";
-            this.tsm_OpenGodPasswordWindow.Click += new System.EventHandler(this.tsm_OpenGodPasswordWindow_Click);
+            this.btnEncryptAll.Location = new System.Drawing.Point(222, 187);
+            this.btnEncryptAll.Name = "btnEncryptAll";
+            this.btnEncryptAll.Size = new System.Drawing.Size(75, 23);
+            this.btnEncryptAll.TabIndex = 12;
+            this.btnEncryptAll.Text = "Encrypt All";
+            this.btnEncryptAll.UseVisualStyleBackColor = true;
+            this.btnEncryptAll.Click += new System.EventHandler(this.btnEncryptAll_Click);
+            // 
+            // btnDecryptAll
+            // 
+            this.btnDecryptAll.Location = new System.Drawing.Point(342, 187);
+            this.btnDecryptAll.Name = "btnDecryptAll";
+            this.btnDecryptAll.Size = new System.Drawing.Size(75, 23);
+            this.btnDecryptAll.TabIndex = 13;
+            this.btnDecryptAll.Text = "Decrypt All";
+            this.btnDecryptAll.UseVisualStyleBackColor = true;
+            this.btnDecryptAll.Click += new System.EventHandler(this.btnDecryptAll_Click);
             // 
             // Main
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(563, 513);
+            this.ClientSize = new System.Drawing.Size(563, 418);
+            this.Controls.Add(this.btnDecryptAll);
+            this.Controls.Add(this.btnEncryptAll);
             this.Controls.Add(this.gbDetails);
             this.Controls.Add(this.statusStrip1);
-            this.Controls.Add(this.btnEncrypt);
             this.Controls.Add(this.dgvPasswordList);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.btnLoadPasswords);
@@ -245,20 +237,19 @@
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem tsm_OpenNewPasswordWindow;
         private System.Windows.Forms.Button btnLoadPasswords;
-        private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox textBox4;
         private System.Windows.Forms.TextBox tbPassword;
         private System.Windows.Forms.TextBox tbLogin;
         private System.Windows.Forms.TextBox tbName;
-        private System.Windows.Forms.Button btnEncrypt;
         private System.Windows.Forms.DataGridView dgvPasswordList;
         private System.Windows.Forms.DataGridViewTextBoxColumn ColumnName;
         private System.Windows.Forms.StatusStrip statusStrip1;
         private System.Windows.Forms.GroupBox gbDetails;
         private System.Windows.Forms.ToolStripMenuItem tsm_OpenGodPasswordWindow;
+        private System.Windows.Forms.Button btnEncryptAll;
+        private System.Windows.Forms.Button btnDecryptAll;
     }
 }
 
