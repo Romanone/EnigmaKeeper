@@ -17,7 +17,7 @@ namespace EnigmaKeeper
         public NewPasswordWindow()
         {
             InitializeComponent();
-            new Presenter(this);
+            //new Presenter(this);
         }
 
         public event AddPassword AddPasswordEvent = null;

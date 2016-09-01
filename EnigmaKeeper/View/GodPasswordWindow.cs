@@ -9,7 +9,7 @@ namespace EnigmaKeeper
         public GodPasswordWindow()
         {
             InitializeComponent();
-            new Presenter(this);
+            //new Presenter(this);
         }
 
         public event AddGodPassword AddGodPasswordEvent = null;

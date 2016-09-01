@@ -8,8 +8,6 @@ namespace EnigmaKeeper.DataAccess
         private static string EncryptedText { get; set; }
         private static List<ulong> Keys = new List<ulong>();
 
-        public static bool GlobalEncrypt = false;
-
         public static string EncryptProcess(string text, string key) // Цей метод для виклику шифрування (методів реалізації та їх послідовності)
         {
             StringToLong(key);

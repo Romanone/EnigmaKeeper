@@ -46,24 +46,24 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="MessageService.cs" />
     <Compile Include="View\GodPasswordWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\GodPasswordWindow.Designer.cs">
       <DependentUpon>GodPasswordWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="Models\Model.cs" />
     <Compile Include="View\NewPasswordWindow.cs">
       <SubType>Form</SubType>
     </Compile>
     <Compile Include="View\NewPasswordWindow.Designer.cs">
       <DependentUpon>NewPasswordWindow.cs</DependentUpon>
     </Compile>
-    <Compile Include="View\Main.cs">
+    <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
-    <Compile Include="View\Main.Designer.cs">
-      <DependentUpon>Main.cs</DependentUpon>
+    <Compile Include="View\MainForm.Designer.cs">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </Compile>
     <Compile Include="Presenter\Presenter.cs" />
     <Compile Include="Program.cs" />
@@ -74,8 +74,8 @@
     <EmbeddedResource Include="View\NewPasswordWindow.resx">
       <DependentUpon>NewPasswordWindow.cs</DependentUpon>
     </EmbeddedResource>
-    <EmbeddedResource Include="View\Main.resx">
-      <DependentUpon>Main.cs</DependentUpon>
+    <EmbeddedResource Include="View\MainForm.resx">
+      <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
@@ -100,11 +100,12 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <ProjectReference Include="..\EnigmaKeeper.DataAccess\EnigmaKeeper.DataAccess.csproj">
-      <Project>{4c7a1e7b-0a2f-4675-b49a-71ca88bc1b5d}</Project>
-      <Name>EnigmaKeeper.DataAccess</Name>
+    <ProjectReference Include="..\EnigmaKeeper.BL\EnigmaKeeper.BL.csproj">
+      <Project>{22d6fbfd-b752-446e-8fc0-2f87cddc6090}</Project>
+      <Name>EnigmaKeeper.BL</Name>
     </ProjectReference>
   </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

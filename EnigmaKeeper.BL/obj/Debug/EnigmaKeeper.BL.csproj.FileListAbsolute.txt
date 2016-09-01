@@ -1,0 +1,5 @@
+D:\Git\EnigmaKeeper\EnigmaKeeper.BL\obj\Debug\EnigmaKeeper.BL.csprojResolveAssemblyReference.cache
+D:\Git\EnigmaKeeper\EnigmaKeeper.BL\bin\Debug\EnigmaKeeper.BL.dll
+D:\Git\EnigmaKeeper\EnigmaKeeper.BL\bin\Debug\EnigmaKeeper.BL.pdb
+D:\Git\EnigmaKeeper\EnigmaKeeper.BL\obj\Debug\EnigmaKeeper.BL.dll
+D:\Git\EnigmaKeeper\EnigmaKeeper.BL\obj\Debug\EnigmaKeeper.BL.pdb
