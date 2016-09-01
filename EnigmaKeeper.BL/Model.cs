@@ -1,25 +1,24 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using EnigmaKeeper.DataAccess;
-using EnigmaKeeper.Models;
+﻿using EnigmaKeeper.Password;
 
-namespace EnigmaKeeper.Models
+namespace EnigmaKeeper.BL
 {
     public interface IModel : IPassword
     {
-
-
+        // for future
     }
 
-    class Model : IModel
+    public class Model : IModel
     {
         public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 
         private readonly IPassword _password;
+
+        public Model()
+        {
+            _password = new ConcretePassword();
+        }
 
         public void AddPassword(string name, string login, string password) //Add new password
         {

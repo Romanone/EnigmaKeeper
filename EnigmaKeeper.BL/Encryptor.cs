@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace EnigmaKeeper.DataAccess
+namespace EnigmaKeeper.Password
 {
-    public static class Encryptor
+    internal static class Encryptor
     {
         private static string EncryptedText { get; set; }
         private static List<ulong> Keys = new List<ulong>();

@@ -1,6 +1,5 @@
 ﻿using System;
-using EnigmaKeeper.Models;
-using EnigmaKeeper.DataAccess;
+using EnigmaKeeper.BL;
 
 namespace EnigmaKeeper
 {
@@ -9,103 +8,57 @@ namespace EnigmaKeeper
         private readonly IMainForm _mainForm;
         private readonly IModel _model;
 
-
-
-
-
-        //NewPasswordWindow newPasswordWindow = null;
-        //GodPasswordWindow godPassword = null;
-        ////IModel model = null;
-        ////MainForm main = null;
-        ////IPassword password = null;
-
-        ////public Presenter() { }
-
-        //public Presenter(IMainForm mainForm, IModel model)
-        //{
-        //    this._mainForm = mainForm;
-        //    this._model = model;
-        //    //this.model = new Model();
-
-        //    //this.main.ReturnByPasswordEvent += Main_ReturnByPasswordEvent;
-        //    //this.main.LoadPasswordEvent += Main_LoadPasswordEvent;
-        //    //this.main.EncryptAllEvent += Main_EncryptAllEvent;
-        //    //this.main.DecryptAllEvent += Main_DecryptAllEvent;
-        //}
-
-        //public Presenter(GodPasswordWindow godPassword)
-        //{
-        //    this.godPassword = godPassword;
-        //    this.model = new Model();
-        //    this.godPassword.AddGodPasswordEvent += GodPassword_AddGodPasswordEvent;
-        //}
-
-        //public Presenter(NewPasswordWindow newPasswordWindow)
-        //{
-        //    this.newPasswordWindow = newPasswordWindow;
-        //    this.model = new Model();
-        //    this.newPasswordWindow.AddPasswordEvent += NewPasswordWindow_AddPasswordEvent;
-        //}
-
         public Presenter(IMainForm mainForm, IModel model)
         {
             this._mainForm = mainForm;
             this._model = model;
 
             this._mainForm.AddPasswordEvent += _mainForm_AddPasswordEvent;
-            //this.main.ReturnByPasswordEvent += Main_ReturnByPasswordEvent;
-            //this.main.LoadPasswordEvent += Main_LoadPasswordEvent;
-            //this.main.EncryptAllEvent += Main_EncryptAllEvent;
-            //this.main.DecryptAllEvent += Main_DecryptAllEvent;
+            this._mainForm.GetPasswordCountEvent += _mainForm_GetPasswordCountEvent;
+            this._mainForm.LoadPasswordByIndexEvent += _mainForm_LoadPasswordByIndexEvent;
+            this._mainForm.LoadPasswordByNameEvent += _mainForm_LoadPasswordByNameEvent;
+            this._mainForm.SetGodPasswordEvent += _mainForm_SetGodPasswordEvent;
+            this._mainForm.EncryptAllEvent += _mainForm_EncryptAllEvent;
+            this._mainForm.DecryptAllEvent += _mainForm_DecryptAllEvent;
+        }
+
+        private void _mainForm_DecryptAllEvent(object sender, EventArgs e)
+        {
+            _model.DecryptAll();
+        }
+
+        private void _mainForm_EncryptAllEvent(object sender, EventArgs e)
+        {
+            _model.EncryptAll();
+        }
+
+        private void _mainForm_SetGodPasswordEvent(object sender, EventArgs e)
+        {
+            _model.SetGodPassword(_mainForm.GodPassword, "");
+        }
+
+        private void _mainForm_LoadPasswordByNameEvent(string name)
+        {
+            _mainForm.Name = _model.GetPassword(name).Name;
+            _mainForm.Login = _model.GetPassword(name).Login;
+            _mainForm.Password = _model.GetPassword(name).Password;
+        }
+
+        private void _mainForm_LoadPasswordByIndexEvent(int index)
+        {
+            _mainForm.Name = _model.GetPassword(index).Name;
+            _mainForm.Login = _model.GetPassword(index).Login;
+            _mainForm.Password = _model.GetPassword(index).Password;
+        }
+
+        private void _mainForm_GetPasswordCountEvent(object sender, EventArgs e)
+        {
+            _mainForm.PasswordCount = _model.GetPasswordCount();
         }
 
         private void _mainForm_AddPasswordEvent(object sender, EventArgs e)
         {
             _model.AddPassword(_mainForm.Name, _mainForm.Login, _mainForm.Password);
         }
-
-
-        //#region *** Main Event Handler ***
-
-        //private void Main_DecryptAllEvent(object sender, EventArgs e)
-        //{            
-        //    model.DecryptAll();
-        //}
-
-        //private void Main_EncryptAllEvent(object sender, EventArgs e)
-        //{
-        //    model.EncryptAll();
-        //}
-
-        //private object Main_ReturnByPasswordEvent(string name)
-        //{
-        //    return model.ReturnByName(name);
-        //}
-
-        //private IPassword Main_LoadPasswordEvent(int index)
-        //{
-        //    return model.GetPassword(index) as IPassword;
-        //}
-
-        //#endregion
-
-
-
-        //private void NewPasswordWindow_AddPasswordEvent(string name, string login, string password)
-        //{
-        //    model.AddPassword(name, login, password);
-        //}
-
-        //private void GodPassword_AddGodPasswordEvent(string godPassword)
-        //{
-        //    model.SetGodPassword(godPassword);
-        //}
-
-        //public int GetPasswordCount()
-        //{
-        //    model = new Model(); //TODO: do it
-        //    return model.GetPasswordCount();
-        //}
-
     }
 }

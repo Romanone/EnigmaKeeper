@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
-namespace EnigmaKeeper.DataAccess
+namespace EnigmaKeeper.Password
 {
     public interface IPassword
     {
@@ -20,9 +18,11 @@ namespace EnigmaKeeper.DataAccess
         string Password { get; set; }
     }
 
-    public class ConcretePassword : IPassword
+    internal class ConcretePassword : IPassword
     {
         private static List<ConcretePassword> PasswordBox = new List<ConcretePassword>();
+
+        public ConcretePassword() { }
 
         private ConcretePassword(string name, string login, string password, bool encrypted)
         {
@@ -39,10 +39,17 @@ namespace EnigmaKeeper.DataAccess
 
         private string godPassword = null;
 
-        public void AddPassword(string name, string login, string password) //Add password in PasswordBox using concstructor 
+        public void AddPassword(string name, string login, string password) //Add password in PasswordBox using constructor 
         {
             if (String.IsNullOrEmpty(name))
                 return;
+            foreach (var item in PasswordBox)
+            {
+                if(name == item.Name)
+                {
+                    return;
+                }
+            }
             PasswordBox.Add(new ConcretePassword(name, login, password, false));
         }
 
@@ -65,7 +72,7 @@ namespace EnigmaKeeper.DataAccess
 
         public void SetGodPassword(string password, string oldPassword)
         {
-            if (godPassword != null)
+            if (godPassword == null)
             {
                 godPassword = password;
                 return;

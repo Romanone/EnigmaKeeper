@@ -1,8 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 using System.Windows.Forms;
+using EnigmaKeeper.BL;
 
 namespace EnigmaKeeper
 {
@@ -16,6 +14,10 @@ namespace EnigmaKeeper
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
+
+            MainForm mainForm = new MainForm();
+            Model model = new Model();
+
             Application.Run(new MainForm());
 
 
