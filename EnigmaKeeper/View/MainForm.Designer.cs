@@ -46,6 +46,7 @@
             this.btnDeletePassword = new System.Windows.Forms.Button();
             this.gbAddNewPassword = new System.Windows.Forms.GroupBox();
             this.btnAddNewPassword = new System.Windows.Forms.Button();
+            this.cbEnableSettings = new System.Windows.Forms.CheckBox();
             this.label4 = new System.Windows.Forms.Label();
             this.tbNewPasswordName = new System.Windows.Forms.TextBox();
             this.tbNewPasswordPassword = new System.Windows.Forms.TextBox();
@@ -56,12 +57,13 @@
             this.btnSetGodPassword = new System.Windows.Forms.Button();
             this.tbGodPassword = new System.Windows.Forms.TextBox();
             this.label9 = new System.Windows.Forms.Label();
-            this.cbEnableSettings = new System.Windows.Forms.CheckBox();
             this.gbControls = new System.Windows.Forms.GroupBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
             this.fileToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.btnLoadPasswords = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnSavePasswords = new System.Windows.Forms.ToolStripMenuItem();
+            this.btnLoadPasswordsFromFile = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.dgvPasswordList)).BeginInit();
             this.gbDetails.SuspendLayout();
             this.gbAddNewPassword.SuspendLayout();
@@ -297,6 +299,17 @@
             this.btnAddNewPassword.UseVisualStyleBackColor = true;
             this.btnAddNewPassword.Click += new System.EventHandler(this.btnAddNewPassword_Click);
             // 
+            // cbEnableSettings
+            // 
+            this.cbEnableSettings.AutoSize = true;
+            this.cbEnableSettings.Location = new System.Drawing.Point(140, 0);
+            this.cbEnableSettings.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.cbEnableSettings.Name = "cbEnableSettings";
+            this.cbEnableSettings.Size = new System.Drawing.Size(128, 20);
+            this.cbEnableSettings.TabIndex = 20;
+            this.cbEnableSettings.Text = "Enable settings";
+            this.cbEnableSettings.UseVisualStyleBackColor = true;
+            // 
             // label4
             // 
             this.label4.AutoSize = true;
@@ -403,17 +416,6 @@
             this.label9.TabIndex = 6;
             this.label9.Text = "Password";
             // 
-            // cbEnableSettings
-            // 
-            this.cbEnableSettings.AutoSize = true;
-            this.cbEnableSettings.Location = new System.Drawing.Point(140, 0);
-            this.cbEnableSettings.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.cbEnableSettings.Name = "cbEnableSettings";
-            this.cbEnableSettings.Size = new System.Drawing.Size(128, 20);
-            this.cbEnableSettings.TabIndex = 20;
-            this.cbEnableSettings.Text = "Enable settings";
-            this.cbEnableSettings.UseVisualStyleBackColor = true;
-            // 
             // gbControls
             // 
             this.gbControls.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
@@ -462,7 +464,9 @@
             // fileToolStripMenuItem
             // 
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.btnLoadPasswords});
+            this.btnLoadPasswords,
+            this.btnSavePasswords,
+            this.btnLoadPasswordsFromFile});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
             this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
@@ -470,9 +474,23 @@
             // btnLoadPasswords
             // 
             this.btnLoadPasswords.Name = "btnLoadPasswords";
-            this.btnLoadPasswords.Size = new System.Drawing.Size(158, 22);
+            this.btnLoadPasswords.Size = new System.Drawing.Size(206, 22);
             this.btnLoadPasswords.Text = "Load passwords";
             this.btnLoadPasswords.Click += new System.EventHandler(this.btnLoadPasswords_Click);
+            // 
+            // btnSavePasswords
+            // 
+            this.btnSavePasswords.Name = "btnSavePasswords";
+            this.btnSavePasswords.Size = new System.Drawing.Size(206, 22);
+            this.btnSavePasswords.Text = "Save passwords to file";
+            this.btnSavePasswords.Click += new System.EventHandler(this.btnSavePasswordsToFile_Click);
+            // 
+            // btnLoadPasswordsFromFile
+            // 
+            this.btnLoadPasswordsFromFile.Name = "btnLoadPasswordsFromFile";
+            this.btnLoadPasswordsFromFile.Size = new System.Drawing.Size(206, 22);
+            this.btnLoadPasswordsFromFile.Text = "Load passwords from file";
+            this.btnLoadPasswordsFromFile.Click += new System.EventHandler(this.btnLoadPasswordsFromFile_Click);
             // 
             // MainForm
             // 
@@ -545,6 +563,8 @@
         private System.Windows.Forms.MenuStrip menuStrip1;
         private System.Windows.Forms.ToolStripMenuItem fileToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem btnLoadPasswords;
+        private System.Windows.Forms.ToolStripMenuItem btnSavePasswords;
+        private System.Windows.Forms.ToolStripMenuItem btnLoadPasswordsFromFile;
     }
 }
 

@@ -9,43 +9,50 @@ namespace EnigmaKeeper
 
     interface IMainForm
     {
+        string Path { get; set; }
         string Name { get; set; }
         string Login { get; set; }
         string Password { get; set; }
-        string GodPassword { get; set; }
         int PasswordCount { get; set; }
+        string GodPassword { get; set; }
 
+        event EventHandler EncryptAllEvent;
+        event EventHandler DecryptAllEvent;
         event EventHandler AddPasswordEvent;
         event EventHandler SetGodPasswordEvent;
         event EventHandler GetPasswordCountEvent;
-        event LoadPasswordByIndex LoadPasswordByIndexEvent;
+        event EventHandler WritePasswordsToFileEvent;
+        event EventHandler ReadPasswordsFromFileEvent;
         event LoadPasswordByName LoadPasswordByNameEvent;
-        event EventHandler EncryptAllEvent;
-        event EventHandler DecryptAllEvent;
+        event LoadPasswordByIndex LoadPasswordByIndexEvent;
     }
 
     public partial class MainForm : Form, IMainForm
     {
-
         public MainForm()
         {
             InitializeComponent();
-            new Presenter(this, new Model());            
+            new Presenter(this, new Model());
         }
 
-        public new string Name { get; set; }
+        public string Path { get; set; }
         public string Login { get; set; }
+        public new string Name { get; set; }
         public string Password { get; set; }
-        public string GodPassword { get; set; }
         public int PasswordCount { get; set; }
+        public string GodPassword { get; set; }
 
         public event EventHandler EncryptAllEvent;
         public event EventHandler DecryptAllEvent;
         public event EventHandler AddPasswordEvent;
-        public event EventHandler GetPasswordCountEvent;
         public event EventHandler SetGodPasswordEvent;
-        public event LoadPasswordByIndex LoadPasswordByIndexEvent;
+        public event EventHandler GetPasswordCountEvent;
+        public event EventHandler WritePasswordsToFileEvent;
+        public event EventHandler ReadPasswordsFromFileEvent;
         public event LoadPasswordByName LoadPasswordByNameEvent;
+        public event LoadPasswordByIndex LoadPasswordByIndexEvent;
+
+        #region *** Event Handler ***
 
         private void btnAddNewPassword_Click(object sender, EventArgs e)
         {
@@ -92,10 +99,24 @@ namespace EnigmaKeeper
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            LoadPasswordFromFile(sender, e);
             LoadPasswords(sender, e);
             LoadSelectedPassword(sender, e);
         }
 
+        private void btnSavePasswordsToFile_Click(object sender, EventArgs e)
+        {
+            SavePasswordsToFile(sender, e);
+        }
+
+        private void btnLoadPasswordsFromFile_Click(object sender, EventArgs e)
+        {
+            LoadPasswordFromFile(sender, e);
+        }
+
+        #endregion
+
+        #region *** Methods ***
         private void LoadPasswords(object sender, EventArgs e)
         {
             dgvPasswordList.Rows.Clear();
@@ -124,7 +145,20 @@ namespace EnigmaKeeper
             {
 
             }
-
         }
+
+        private void LoadPasswordFromFile(object sender, EventArgs e)
+        {
+            Path = @"PasswordBox.txt";
+            ReadPasswordsFromFileEvent.Invoke(sender, e);
+            LoadPasswords(sender, e);
+        }
+
+        private void SavePasswordsToFile(object sender, EventArgs e)
+        {
+            Path = @"PasswordBox.txt"; //TODO here logic
+            WritePasswordsToFileEvent.Invoke(sender, e);
+        }
+        #endregion
     }
 }

@@ -2,7 +2,7 @@
 
 namespace EnigmaKeeper.BL
 {
-    public interface IModel : IPassword
+    public interface IModel : IPassword, IFileController
     {
         // for future
     }
@@ -14,10 +14,12 @@ namespace EnigmaKeeper.BL
         public string Password { get; set; }
 
         private readonly IPassword _password;
+        private readonly IFileController _fileController;
 
         public Model()
         {
             _password = new ConcretePassword();
+            _fileController = new FileController();
         }
 
         public void AddPassword(string name, string login, string password) //Add new password
@@ -53,6 +55,16 @@ namespace EnigmaKeeper.BL
         public void DecryptAll() //Decrypt all
         {
             _password.DecryptAll();
+        }
+
+        public void WriteToFile(string path)
+        {
+            _fileController.WriteToFile(path);
+        }
+
+        public void ReadFromFile(string path)
+        {
+            _fileController.ReadFromFile(path);
         }
     }
 }

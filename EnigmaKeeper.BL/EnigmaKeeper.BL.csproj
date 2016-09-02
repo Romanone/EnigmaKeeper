@@ -41,6 +41,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Encryptor.cs" />
+    <Compile Include="FileController.cs" />
     <Compile Include="Model.cs" />
     <Compile Include="Password.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

@@ -20,6 +20,18 @@ namespace EnigmaKeeper
             this._mainForm.SetGodPasswordEvent += _mainForm_SetGodPasswordEvent;
             this._mainForm.EncryptAllEvent += _mainForm_EncryptAllEvent;
             this._mainForm.DecryptAllEvent += _mainForm_DecryptAllEvent;
+            this._mainForm.WritePasswordsToFileEvent += _mainForm_WritePasswordsToFileEvent;
+            this._mainForm.ReadPasswordsFromFileEvent += _mainForm_ReadPasswordsFromFileEvent;
+        }
+
+        private void _mainForm_ReadPasswordsFromFileEvent(object sender, EventArgs e)
+        {
+            _model.ReadFromFile(_mainForm.Path);
+        }
+
+        private void _mainForm_WritePasswordsToFileEvent(object sender, EventArgs e)
+        {
+            _model.WriteToFile(_mainForm.Path);
         }
 
         private void _mainForm_DecryptAllEvent(object sender, EventArgs e)
