@@ -6,7 +6,10 @@ namespace EnigmaKeeper.Password
 {
     public interface IPassword
     {
-        void AddPassword(string name, string login, string password);
+        void AddPassword(string name, string login, string password, bool encrypted);
+        void RemovePassword(string name);
+        void UpdatePassword(string oldName, string name, string login, string password);
+        void RemoveAllPasswords();
         IPassword GetPassword(string name);
         IPassword GetPassword(int index);
         void SetGodPassword(string password, string oldPassword);
@@ -16,6 +19,7 @@ namespace EnigmaKeeper.Password
         string Name { get; set; }
         string Login { get; set; }
         string Password { get; set; }
+        bool Encrypted { get; set; }
     }
 
     internal class ConcretePassword : IPassword
@@ -39,7 +43,7 @@ namespace EnigmaKeeper.Password
 
         private string godPassword = null;
 
-        public void AddPassword(string name, string login, string password) //Add password in PasswordBox using constructor 
+        public void AddPassword(string name, string login, string password, bool encrypted) //Add password in PasswordBox using constructor 
         {
             if (String.IsNullOrEmpty(name))
                 return;
@@ -50,7 +54,7 @@ namespace EnigmaKeeper.Password
                     return;
                 }
             }
-            PasswordBox.Add(new ConcretePassword(name, login, password, false));
+            PasswordBox.Add(new ConcretePassword(name, login, password, encrypted));
         }
 
         public IPassword GetPassword(string name)
@@ -117,6 +121,41 @@ namespace EnigmaKeeper.Password
                     PasswordBox[i].Encrypted = false;
                 }
             }
+        }
+
+        public void RemovePassword(string name)
+        {
+            int index = 0;
+
+            foreach (var item in PasswordBox)
+            {
+                if(name == item.Name)
+                {
+                    index = PasswordBox.IndexOf(item);
+                }
+            }
+
+            PasswordBox.RemoveAt(index);
+        }
+
+        public void UpdatePassword(string oldName, string name, string login, string password)
+        {
+            foreach (var item in PasswordBox)
+            {
+                if (oldName == item.Name)
+                {
+                    item.Name = name;
+                    item.Login = login;
+                    item.Password = password;
+                    
+                    //index = PasswordBox.IndexOf(item);
+                }
+            }
+        }
+
+        public void RemoveAllPasswords()
+        {
+            PasswordBox.Clear();
         }
     }
 }

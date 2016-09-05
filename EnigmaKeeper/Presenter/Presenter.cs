@@ -5,23 +5,42 @@ namespace EnigmaKeeper
 {
     class Presenter
     {
-        private readonly IMainForm _mainForm;
         private readonly IModel _model;
+        private readonly IMainForm _mainForm;
 
         public Presenter(IMainForm mainForm, IModel model)
         {
-            this._mainForm = mainForm;
             this._model = model;
+            this._mainForm = mainForm;
 
-            this._mainForm.AddPasswordEvent += _mainForm_AddPasswordEvent;
-            this._mainForm.GetPasswordCountEvent += _mainForm_GetPasswordCountEvent;
-            this._mainForm.LoadPasswordByIndexEvent += _mainForm_LoadPasswordByIndexEvent;
-            this._mainForm.LoadPasswordByNameEvent += _mainForm_LoadPasswordByNameEvent;
-            this._mainForm.SetGodPasswordEvent += _mainForm_SetGodPasswordEvent;
-            this._mainForm.EncryptAllEvent += _mainForm_EncryptAllEvent;
             this._mainForm.DecryptAllEvent += _mainForm_DecryptAllEvent;
+            this._mainForm.EncryptAllEvent += _mainForm_EncryptAllEvent;
+            this._mainForm.AddPasswordEvent += _mainForm_AddPasswordEvent;
+            this._mainForm.RemovePasswordEvent += _mainForm_RemovePasswordEvent;
+            this._mainForm.SetGodPasswordEvent += _mainForm_SetGodPasswordEvent;
+            this._mainForm.GetPasswordCountEvent += _mainForm_GetPasswordCountEvent;
+            this._mainForm.LoadPasswordByNameEvent += _mainForm_LoadPasswordByNameEvent;
+            this._mainForm.LoadPasswordByIndexEvent += _mainForm_LoadPasswordByIndexEvent;
             this._mainForm.WritePasswordsToFileEvent += _mainForm_WritePasswordsToFileEvent;
             this._mainForm.ReadPasswordsFromFileEvent += _mainForm_ReadPasswordsFromFileEvent;
+
+            this._mainForm.RemoveAllPasswordsEvent += _mainForm_RemoveAllPasswordsEvent;
+            this._mainForm.UpdatePasswordEvent += _mainForm_UpdatePasswordEvent;
+        }
+
+        private void _mainForm_RemoveAllPasswordsEvent(object sender, EventArgs e)
+        {
+            _model.RemoveAllPasswords();
+        }
+
+        private void _mainForm_UpdatePasswordEvent(object sender, EventArgs e)
+        {
+            _model.UpdatePassword(_mainForm.OldName, _mainForm.Name, _mainForm.Login, _mainForm.Password);
+        }
+
+        private void _mainForm_RemovePasswordEvent(object sender, EventArgs e)
+        {
+            _model.RemovePassword(_mainForm.Name);
         }
 
         private void _mainForm_ReadPasswordsFromFileEvent(object sender, EventArgs e)
@@ -70,7 +89,7 @@ namespace EnigmaKeeper
 
         private void _mainForm_AddPasswordEvent(object sender, EventArgs e)
         {
-            _model.AddPassword(_mainForm.Name, _mainForm.Login, _mainForm.Password);
+            _model.AddPassword(_mainForm.Name, _mainForm.Login, _mainForm.Password, false);
         }
     }
 }

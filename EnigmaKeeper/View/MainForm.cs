@@ -12,15 +12,19 @@ namespace EnigmaKeeper
         string Path { get; set; }
         string Name { get; set; }
         string Login { get; set; }
+        string OldName { get; set; }
         string Password { get; set; }
         int PasswordCount { get; set; }
         string GodPassword { get; set; }
-
+        
         event EventHandler EncryptAllEvent;
         event EventHandler DecryptAllEvent;
         event EventHandler AddPasswordEvent;
+        event EventHandler UpdatePasswordEvent;
         event EventHandler SetGodPasswordEvent;
+        event EventHandler RemovePasswordEvent;
         event EventHandler GetPasswordCountEvent;
+        event EventHandler RemoveAllPasswordsEvent;
         event EventHandler WritePasswordsToFileEvent;
         event EventHandler ReadPasswordsFromFileEvent;
         event LoadPasswordByName LoadPasswordByNameEvent;
@@ -37,6 +41,7 @@ namespace EnigmaKeeper
 
         public string Path { get; set; }
         public string Login { get; set; }
+        public string OldName { get; set; }
         public new string Name { get; set; }
         public string Password { get; set; }
         public int PasswordCount { get; set; }
@@ -45,8 +50,11 @@ namespace EnigmaKeeper
         public event EventHandler EncryptAllEvent;
         public event EventHandler DecryptAllEvent;
         public event EventHandler AddPasswordEvent;
+        public event EventHandler UpdatePasswordEvent;
         public event EventHandler SetGodPasswordEvent;
+        public event EventHandler RemovePasswordEvent;
         public event EventHandler GetPasswordCountEvent;
+        public event EventHandler RemoveAllPasswordsEvent;
         public event EventHandler WritePasswordsToFileEvent;
         public event EventHandler ReadPasswordsFromFileEvent;
         public event LoadPasswordByName LoadPasswordByNameEvent;
@@ -112,6 +120,8 @@ namespace EnigmaKeeper
         private void btnLoadPasswordsFromFile_Click(object sender, EventArgs e)
         {
             LoadPasswordFromFile(sender, e);
+            LoadPasswords(sender, e);
+            LoadSelectedPassword(sender, e);
         }
 
         #endregion
@@ -150,6 +160,7 @@ namespace EnigmaKeeper
         private void LoadPasswordFromFile(object sender, EventArgs e)
         {
             Path = @"PasswordBox.txt";
+            RemoveAllPasswordsEvent.Invoke(sender, e);
             ReadPasswordsFromFileEvent.Invoke(sender, e);
             LoadPasswords(sender, e);
         }
@@ -160,5 +171,33 @@ namespace EnigmaKeeper
             WritePasswordsToFileEvent.Invoke(sender, e);
         }
         #endregion
+
+        private void btnUpdatePassword_Click(object sender, EventArgs e)
+        {
+            OldName = Name;
+            Name = tbName.Text;
+            Login = tbLogin.Text;
+            Password = tbPassword.Text;
+            
+            UpdatePasswordEvent(sender, e);
+            LoadPasswords(sender, e);
+            LoadSelectedPassword(sender, e);
+        }
+
+        private void btnRemovePassword_Click(object sender, EventArgs e)
+        {
+            RemovePasswordEvent.Invoke(sender, e);
+            LoadPasswords(sender, e);
+        }
+
+        private void btnCopyLogin_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tbLogin.Text);
+        }
+
+        private void btnCopyPassword_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tbPassword.Text);
+        }
     }
 }

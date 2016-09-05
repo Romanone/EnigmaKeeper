@@ -12,6 +12,7 @@ namespace EnigmaKeeper.BL
         public string Name { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
+        public bool Encrypted { get; set; }
 
         private readonly IPassword _password;
         private readonly IFileController _fileController;
@@ -22,9 +23,9 @@ namespace EnigmaKeeper.BL
             _fileController = new FileController();
         }
 
-        public void AddPassword(string name, string login, string password) //Add new password
+        public void AddPassword(string name, string login, string password, bool encrypted) //Add new password
         {
-            this._password.AddPassword(name, login, password);
+            this._password.AddPassword(name, login, password, encrypted);
         }
 
         public IPassword GetPassword(int index) //Return password by index
@@ -65,6 +66,20 @@ namespace EnigmaKeeper.BL
         public void ReadFromFile(string path)
         {
             _fileController.ReadFromFile(path);
+        }
+
+        public void RemovePassword(string name)
+        {
+            _password.RemovePassword(name);
+        }
+        public void UpdatePassword(string oldName, string name, string login, string password)
+        {
+            _password.UpdatePassword(oldName, name, login, password);
+        }
+
+        public void RemoveAllPasswords()
+        {
+            _password.RemoveAllPasswords();
         }
     }
 }

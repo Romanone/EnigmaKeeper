@@ -43,7 +43,7 @@
             this.btnCopyLogin = new System.Windows.Forms.Button();
             this.btnCopyPassword = new System.Windows.Forms.Button();
             this.btnUpdatePassword = new System.Windows.Forms.Button();
-            this.btnDeletePassword = new System.Windows.Forms.Button();
+            this.btnRemovePassword = new System.Windows.Forms.Button();
             this.gbAddNewPassword = new System.Windows.Forms.GroupBox();
             this.btnAddNewPassword = new System.Windows.Forms.Button();
             this.cbEnableSettings = new System.Windows.Forms.CheckBox();
@@ -227,6 +227,7 @@
             this.btnCopyLogin.TabIndex = 14;
             this.btnCopyLogin.Text = "Copy Login";
             this.btnCopyLogin.UseVisualStyleBackColor = true;
+            this.btnCopyLogin.Click += new System.EventHandler(this.btnCopyLogin_Click);
             // 
             // btnCopyPassword
             // 
@@ -240,6 +241,7 @@
             this.btnCopyPassword.TabIndex = 15;
             this.btnCopyPassword.Text = "Copy Password";
             this.btnCopyPassword.UseVisualStyleBackColor = true;
+            this.btnCopyPassword.Click += new System.EventHandler(this.btnCopyPassword_Click);
             // 
             // btnUpdatePassword
             // 
@@ -252,18 +254,20 @@
             this.btnUpdatePassword.TabIndex = 16;
             this.btnUpdatePassword.Text = "Update Password";
             this.btnUpdatePassword.UseVisualStyleBackColor = true;
+            this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
             // 
-            // btnDeletePassword
+            // btnRemovePassword
             // 
-            this.btnDeletePassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
+            this.btnRemovePassword.Anchor = ((System.Windows.Forms.AnchorStyles)(((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnDeletePassword.Location = new System.Drawing.Point(144, 42);
-            this.btnDeletePassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnDeletePassword.Name = "btnDeletePassword";
-            this.btnDeletePassword.Size = new System.Drawing.Size(136, 26);
-            this.btnDeletePassword.TabIndex = 17;
-            this.btnDeletePassword.Text = "Delete Password";
-            this.btnDeletePassword.UseVisualStyleBackColor = true;
+            this.btnRemovePassword.Location = new System.Drawing.Point(144, 42);
+            this.btnRemovePassword.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnRemovePassword.Name = "btnRemovePassword";
+            this.btnRemovePassword.Size = new System.Drawing.Size(136, 26);
+            this.btnRemovePassword.TabIndex = 17;
+            this.btnRemovePassword.Text = "Remove Password";
+            this.btnRemovePassword.UseVisualStyleBackColor = true;
+            this.btnRemovePassword.Click += new System.EventHandler(this.btnRemovePassword_Click);
             // 
             // gbAddNewPassword
             // 
@@ -437,7 +441,7 @@
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
             this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Absolute, 20F));
             this.tableLayoutPanel1.Controls.Add(this.btnUpdatePassword, 0, 1);
-            this.tableLayoutPanel1.Controls.Add(this.btnDeletePassword, 1, 1);
+            this.tableLayoutPanel1.Controls.Add(this.btnRemovePassword, 1, 1);
             this.tableLayoutPanel1.Controls.Add(this.btnCopyLogin, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnCopyPassword, 1, 0);
             this.tableLayoutPanel1.Controls.Add(this.btnDecryptAll, 1, 2);
@@ -544,7 +548,7 @@
         private System.Windows.Forms.Button btnCopyLogin;
         private System.Windows.Forms.Button btnCopyPassword;
         private System.Windows.Forms.Button btnUpdatePassword;
-        private System.Windows.Forms.Button btnDeletePassword;
+        private System.Windows.Forms.Button btnRemovePassword;
         private System.Windows.Forms.GroupBox gbAddNewPassword;
         private System.Windows.Forms.Button btnAddNewPassword;
         private System.Windows.Forms.Label label4;

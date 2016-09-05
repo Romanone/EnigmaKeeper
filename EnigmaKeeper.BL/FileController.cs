@@ -23,10 +23,6 @@ namespace EnigmaKeeper.BL
             _password = new ConcretePassword();
         }
 
-        //public static string Path { get; set; }
-
-        //DirectoryInfo Directory = new DirectoryInfo(Path.ToString());
-
         public bool IsExist(string path)
         {
             DirectoryInfo Directory = new DirectoryInfo(path);
@@ -52,9 +48,10 @@ namespace EnigmaKeeper.BL
 
             for (int i = 0; i < _password.GetPasswordCount(); i++)
             {
-                writer.WriteLine(_password.GetPassword(i).Name + ";" 
-                    + _password.GetPassword(i).Login + ";" 
-                    + _password.GetPassword(i).Password);
+                writer.WriteLine(_password.GetPassword(i).Name + ";"
+                    + _password.GetPassword(i).Login + ";"
+                    + _password.GetPassword(i).Password + ";"
+                    + _password.GetPassword(i).Encrypted + ";");
             }
             writer.Close();
 
@@ -68,8 +65,10 @@ namespace EnigmaKeeper.BL
             while ((lineBeforeSplit = reader.ReadLine()) != null)   
             {
                 string[] line = lineBeforeSplit.Split(';');
-                _password.AddPassword(line[0], line[1], line[2]);
+                _password.AddPassword(line[0], line[1], line[2], Convert.ToBoolean(line[3]));
+                
             }
+
             reader.Close();
         }
     }
