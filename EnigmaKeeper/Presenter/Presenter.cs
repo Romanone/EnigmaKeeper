@@ -26,7 +26,14 @@ namespace EnigmaKeeper
 
             this._mainForm.RemoveAllPasswordsEvent += _mainForm_RemoveAllPasswordsEvent;
             this._mainForm.UpdatePasswordEvent += _mainForm_UpdatePasswordEvent;
+            this._mainForm.CheckControlWordEvent += _mainForm_CheckControlWordEvent;
         }
+
+        private bool _mainForm_CheckControlWordEvent()
+        {
+            return _model.CheckControlWord();
+        }
+
 
         private void _mainForm_RemoveAllPasswordsEvent(object sender, EventArgs e)
         {

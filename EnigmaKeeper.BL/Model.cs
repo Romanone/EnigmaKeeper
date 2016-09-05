@@ -81,5 +81,16 @@ namespace EnigmaKeeper.BL
         {
             _password.RemoveAllPasswords();
         }
+
+        public bool CheckControlWord()
+        {
+            return _password.CheckControlWord();
+        }
+
+        public void SetControlWord(string controlWord)
+        {
+            _password.SetControlWord(controlWord);
+        }
+
     }
 }

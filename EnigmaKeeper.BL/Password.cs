@@ -20,6 +20,12 @@ namespace EnigmaKeeper.Password
         string Login { get; set; }
         string Password { get; set; }
         bool Encrypted { get; set; }
+
+        bool CheckControlWord();
+        void SetControlWord(string controlWord);
+
+        //string ControlWord { get; set; }
+
     }
 
     internal class ConcretePassword : IPassword
@@ -42,6 +48,9 @@ namespace EnigmaKeeper.Password
         public bool Encrypted { get; set; }
 
         private string godPassword = null;
+
+
+        private string ControlWord { get; set; }
 
         public void AddPassword(string name, string login, string password, bool encrypted) //Add password in PasswordBox using constructor 
         {
@@ -76,15 +85,15 @@ namespace EnigmaKeeper.Password
 
         public void SetGodPassword(string password, string oldPassword)
         {
-            if (godPassword == null)
-            {
+            //if (godPassword == null)
+            //{
                 godPassword = password;
-                return;
-            }
+                //return;
+            //}
 
             //else
             //{
-            //    if(oldPassword == godPassword)
+            //    if (oldPassword == godPassword)
             //    {
             //        godPassword = password;
             //        return;
@@ -99,6 +108,8 @@ namespace EnigmaKeeper.Password
 
         public void EncryptAll() //Encrypt all unencrypted password in PasswordBox
         {
+            SetControlWord(PasswordBox[0].Login);
+
             for (int i = 0; i < PasswordBox.Count; i++)
             {
                 if (PasswordBox[i].Encrypted == false)
@@ -121,6 +132,8 @@ namespace EnigmaKeeper.Password
                     PasswordBox[i].Encrypted = false;
                 }
             }
+
+            CheckControlWord();
         }
 
         public void RemovePassword(string name)
@@ -147,8 +160,6 @@ namespace EnigmaKeeper.Password
                     item.Name = name;
                     item.Login = login;
                     item.Password = password;
-                    
-                    //index = PasswordBox.IndexOf(item);
                 }
             }
         }
@@ -156,6 +167,21 @@ namespace EnigmaKeeper.Password
         public void RemoveAllPasswords()
         {
             PasswordBox.Clear();
+        }
+
+        public bool CheckControlWord()
+        {
+            if(ControlWord == PasswordBox[0].Login)
+            {
+                return true;
+            }
+
+            return false;
+        }
+
+        public void SetControlWord(string controlWord)
+        {
+            ControlWord = controlWord;
         }
     }
 }

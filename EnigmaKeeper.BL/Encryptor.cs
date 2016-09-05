@@ -32,6 +32,8 @@ namespace EnigmaKeeper.Password
 
         private static void StringToLong(string key) // Keymaker
         {
+            if (String.IsNullOrWhiteSpace(key))
+                return;
             string strPreKey = null;
             Keys.Clear();
             char[] passwordCharacters = key.ToCharArray();

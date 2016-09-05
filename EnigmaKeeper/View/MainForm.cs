@@ -6,6 +6,7 @@ namespace EnigmaKeeper
 {
     public delegate void LoadPasswordByIndex(int index);
     public delegate void LoadPasswordByName(string name);
+    public delegate bool CheckControlWord();
 
     interface IMainForm
     {
@@ -16,7 +17,7 @@ namespace EnigmaKeeper
         string Password { get; set; }
         int PasswordCount { get; set; }
         string GodPassword { get; set; }
-        
+
         event EventHandler EncryptAllEvent;
         event EventHandler DecryptAllEvent;
         event EventHandler AddPasswordEvent;
@@ -29,6 +30,8 @@ namespace EnigmaKeeper
         event EventHandler ReadPasswordsFromFileEvent;
         event LoadPasswordByName LoadPasswordByNameEvent;
         event LoadPasswordByIndex LoadPasswordByIndexEvent;
+
+        event CheckControlWord CheckControlWordEvent;
     }
 
     public partial class MainForm : Form, IMainForm
@@ -60,6 +63,8 @@ namespace EnigmaKeeper
         public event LoadPasswordByName LoadPasswordByNameEvent;
         public event LoadPasswordByIndex LoadPasswordByIndexEvent;
 
+        public event CheckControlWord CheckControlWordEvent;
+
         #region *** Event Handler ***
 
         private void btnAddNewPassword_Click(object sender, EventArgs e)
@@ -72,6 +77,10 @@ namespace EnigmaKeeper
 
             LoadPasswords(sender, e);
             LoadSelectedPassword(sender, e);
+
+            tbNewPasswordName.Text = "";
+            tbNewPasswordLogin.Text = "";
+            tbNewPasswordPassword.Text = "";
         }
 
         private void btnSetGodPassword_Click(object sender, EventArgs e)
@@ -79,6 +88,8 @@ namespace EnigmaKeeper
             GodPassword = tbGodPassword.Text;
 
             SetGodPasswordEvent.Invoke(sender, e);
+
+            FormUpdate();
         }
 
         private void btnLoadPasswords_Click(object sender, EventArgs e)
@@ -103,10 +114,18 @@ namespace EnigmaKeeper
             DecryptAllEvent.Invoke(sender, e);
             LoadPasswords(sender, e);
             LoadSelectedPassword(sender, e);
+
+            if (!CheckControlWord())
+            {
+                MessageBox.Show("Wrong Pass");
+            }
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+            FormUpdate();
+
             LoadPasswordFromFile(sender, e);
             LoadPasswords(sender, e);
             LoadSelectedPassword(sender, e);
@@ -178,7 +197,7 @@ namespace EnigmaKeeper
             Name = tbName.Text;
             Login = tbLogin.Text;
             Password = tbPassword.Text;
-            
+
             UpdatePasswordEvent(sender, e);
             LoadPasswords(sender, e);
             LoadSelectedPassword(sender, e);
@@ -198,6 +217,26 @@ namespace EnigmaKeeper
         private void btnCopyPassword_Click(object sender, EventArgs e)
         {
             Clipboard.SetText(tbPassword.Text);
+        }
+
+        public void FormUpdate()
+        {
+            if (String.IsNullOrWhiteSpace(GodPassword))
+            {
+                btnEncryptAll.Enabled = false;
+                btnDecryptAll.Enabled = false;
+            }
+
+            else
+            {
+                btnEncryptAll.Enabled = true;
+                btnDecryptAll.Enabled = true;
+            }
+        }
+
+        public bool CheckControlWord()
+        {
+            return CheckControlWordEvent.Invoke();
         }
     }
 }
