@@ -29,9 +29,9 @@ namespace EnigmaKeeper
             this._mainForm.CheckControlWordEvent += _mainForm_CheckControlWordEvent;
         }
 
-        private bool _mainForm_CheckControlWordEvent()
+        private bool _mainForm_CheckControlWordEvent(string controlWord)
         {
-            return _model.CheckControlWord();
+            return _model.CheckControlWord(_model.ControlWord);
         }
 
 
@@ -52,12 +52,12 @@ namespace EnigmaKeeper
 
         private void _mainForm_ReadPasswordsFromFileEvent(object sender, EventArgs e)
         {
-            _model.ReadFromFile(_mainForm.Path);
+            _model.ReadFromStorage(_mainForm.Path);
         }
 
         private void _mainForm_WritePasswordsToFileEvent(object sender, EventArgs e)
         {
-            _model.WriteToFile(_mainForm.Path);
+            _model.SaveToStorage(_mainForm.Path);
         }
 
         private void _mainForm_DecryptAllEvent(object sender, EventArgs e)

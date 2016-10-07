@@ -42,9 +42,9 @@
             this.tableLayoutPanel2 = new System.Windows.Forms.TableLayoutPanel();
             this.tableLayoutPanel4 = new System.Windows.Forms.TableLayoutPanel();
             this.btnUpdatePassword = new System.Windows.Forms.Button();
-            this.btnCopyLogin = new System.Windows.Forms.Button();
             this.btnCopyPassword = new System.Windows.Forms.Button();
             this.btnRemovePassword = new System.Windows.Forms.Button();
+            this.btnCopyLogin = new System.Windows.Forms.Button();
             this.tableLayoutPanel3 = new System.Windows.Forms.TableLayoutPanel();
             this.btnEncryptAll = new System.Windows.Forms.Button();
             this.btnDecryptAll = new System.Windows.Forms.Button();
@@ -275,20 +275,6 @@
             this.btnUpdatePassword.UseVisualStyleBackColor = true;
             this.btnUpdatePassword.Click += new System.EventHandler(this.btnUpdatePassword_Click);
             // 
-            // btnCopyLogin
-            // 
-            this.btnCopyLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
-            | System.Windows.Forms.AnchorStyles.Left) 
-            | System.Windows.Forms.AnchorStyles.Right)));
-            this.btnCopyLogin.Location = new System.Drawing.Point(3, 4);
-            this.btnCopyLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
-            this.btnCopyLogin.Name = "btnCopyLogin";
-            this.btnCopyLogin.Size = new System.Drawing.Size(234, 53);
-            this.btnCopyLogin.TabIndex = 14;
-            this.btnCopyLogin.Text = "Copy Login";
-            this.btnCopyLogin.UseVisualStyleBackColor = true;
-            this.btnCopyLogin.Click += new System.EventHandler(this.btnCopyLogin_Click);
-            // 
             // btnCopyPassword
             // 
             this.btnCopyPassword.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
@@ -316,6 +302,20 @@
             this.btnRemovePassword.Text = "Remove Password";
             this.btnRemovePassword.UseVisualStyleBackColor = true;
             this.btnRemovePassword.Click += new System.EventHandler(this.btnRemovePassword_Click);
+            // 
+            // btnCopyLogin
+            // 
+            this.btnCopyLogin.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
+            | System.Windows.Forms.AnchorStyles.Left) 
+            | System.Windows.Forms.AnchorStyles.Right)));
+            this.btnCopyLogin.Location = new System.Drawing.Point(3, 4);
+            this.btnCopyLogin.Margin = new System.Windows.Forms.Padding(3, 4, 3, 4);
+            this.btnCopyLogin.Name = "btnCopyLogin";
+            this.btnCopyLogin.Size = new System.Drawing.Size(234, 53);
+            this.btnCopyLogin.TabIndex = 14;
+            this.btnCopyLogin.Text = "Copy Login";
+            this.btnCopyLogin.UseVisualStyleBackColor = true;
+            this.btnCopyLogin.Click += new System.EventHandler(this.btnCopyLogin_Click);
             // 
             // tableLayoutPanel3
             // 
@@ -585,7 +585,7 @@
             this.tableLayoutPanel6.Name = "tableLayoutPanel6";
             this.tableLayoutPanel6.RowCount = 1;
             this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 42F));
+            this.tableLayoutPanel6.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Absolute, 59F));
             this.tableLayoutPanel6.Size = new System.Drawing.Size(480, 59);
             this.tableLayoutPanel6.TabIndex = 0;
             // 

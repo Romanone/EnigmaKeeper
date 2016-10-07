@@ -1,24 +1,20 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.IO;
 using EnigmaKeeper.Password;
 
 namespace EnigmaKeeper.BL
 {
-    public interface IFileController
+    public interface IStorageController
     {
-        void WriteToFile(string path);
-        void ReadFromFile(string path);
+        void SaveToStorage(string path);
+        void ReadFromStorage(string path);
     }
 
-    public class FileController : IFileController
+    public class StorageController : IStorageController
     {
         private readonly IPassword _password;
 
-        public FileController()
+        public StorageController()
         {
             _password = new ConcretePassword();
         }
@@ -34,7 +30,7 @@ namespace EnigmaKeeper.BL
             return false;
         }
 
-        public void WriteToFile(string path)
+        public void SaveToStorage(string path)
         {
             var file = new FileInfo(path);
             if (!file.Exists)
@@ -57,7 +53,7 @@ namespace EnigmaKeeper.BL
 
         }
 
-        public void ReadFromFile(string path)
+        public void ReadFromStorage(string path)
         {
             StreamReader reader = new StreamReader(path);
             string lineBeforeSplit;

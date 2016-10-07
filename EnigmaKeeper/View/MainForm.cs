@@ -6,8 +6,8 @@ namespace EnigmaKeeper
 {
     public delegate void LoadPasswordByIndex(int index);
     public delegate void LoadPasswordByName(string name);
-    public delegate bool CheckControlWord();
-
+    public delegate bool CheckControlWord(string controlWord);
+  
     interface IMainForm
     {
         string Path { get; set; }
@@ -27,20 +27,25 @@ namespace EnigmaKeeper
         event EventHandler GetPasswordCountEvent;
         event EventHandler RemoveAllPasswordsEvent;
         event EventHandler WritePasswordsToFileEvent;
+        event CheckControlWord CheckControlWordEvent;
         event EventHandler ReadPasswordsFromFileEvent;
         event LoadPasswordByName LoadPasswordByNameEvent;
         event LoadPasswordByIndex LoadPasswordByIndexEvent;
-
-        event CheckControlWord CheckControlWordEvent;
     }
 
     public partial class MainForm : Form, IMainForm
     {
+        #region *** Constructors ***
+
         public MainForm()
         {
             InitializeComponent();
             new Presenter(this, new Model());
         }
+
+        #endregion *** End of Constructors ***
+
+        #region *** Properties & Events ***
 
         public string Path { get; set; }
         public string Login { get; set; }
@@ -59,13 +64,14 @@ namespace EnigmaKeeper
         public event EventHandler GetPasswordCountEvent;
         public event EventHandler RemoveAllPasswordsEvent;
         public event EventHandler WritePasswordsToFileEvent;
+        public event CheckControlWord CheckControlWordEvent;
         public event EventHandler ReadPasswordsFromFileEvent;
         public event LoadPasswordByName LoadPasswordByNameEvent;
         public event LoadPasswordByIndex LoadPasswordByIndexEvent;
 
-        public event CheckControlWord CheckControlWordEvent;
+        #endregion *** End of Properties & Events ***
 
-        #region *** Event Handler ***
+        #region *** Event Handlers ***
 
         private void btnAddNewPassword_Click(object sender, EventArgs e)
         {
@@ -115,7 +121,7 @@ namespace EnigmaKeeper
             LoadPasswords(sender, e);
             LoadSelectedPassword(sender, e);
 
-            if (!CheckControlWord())
+            if (!CheckControlWord("control word"))
             {
                 MessageBox.Show("Wrong Pass");
             }
@@ -143,9 +149,39 @@ namespace EnigmaKeeper
             LoadSelectedPassword(sender, e);
         }
 
-        #endregion
+
+        private void btnUpdatePassword_Click(object sender, EventArgs e)
+        {
+            OldName = Name;
+            Name = tbName.Text;
+            Login = tbLogin.Text;
+            Password = tbPassword.Text;
+
+            UpdatePasswordEvent(sender, e);
+            LoadPasswords(sender, e);
+            LoadSelectedPassword(sender, e);
+        }
+
+        private void btnRemovePassword_Click(object sender, EventArgs e)
+        {
+            RemovePasswordEvent.Invoke(sender, e);
+            LoadPasswords(sender, e);
+        }
+
+        private void btnCopyLogin_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tbLogin.Text);
+        }
+
+        private void btnCopyPassword_Click(object sender, EventArgs e)
+        {
+            Clipboard.SetText(tbPassword.Text);
+        }
+
+        #endregion *** End of Event Handlers ***
 
         #region *** Methods ***
+
         private void LoadPasswords(object sender, EventArgs e)
         {
             dgvPasswordList.Rows.Clear();
@@ -189,35 +225,7 @@ namespace EnigmaKeeper
             Path = @"PasswordBox.txt"; //TODO here logic
             WritePasswordsToFileEvent.Invoke(sender, e);
         }
-        #endregion
-
-        private void btnUpdatePassword_Click(object sender, EventArgs e)
-        {
-            OldName = Name;
-            Name = tbName.Text;
-            Login = tbLogin.Text;
-            Password = tbPassword.Text;
-
-            UpdatePasswordEvent(sender, e);
-            LoadPasswords(sender, e);
-            LoadSelectedPassword(sender, e);
-        }
-
-        private void btnRemovePassword_Click(object sender, EventArgs e)
-        {
-            RemovePasswordEvent.Invoke(sender, e);
-            LoadPasswords(sender, e);
-        }
-
-        private void btnCopyLogin_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(tbLogin.Text);
-        }
-
-        private void btnCopyPassword_Click(object sender, EventArgs e)
-        {
-            Clipboard.SetText(tbPassword.Text);
-        }
+        
 
         public void FormUpdate()
         {
@@ -234,9 +242,11 @@ namespace EnigmaKeeper
             }
         }
 
-        public bool CheckControlWord()
+        public bool CheckControlWord(string controlWord)
         {
-            return CheckControlWordEvent.Invoke();
+            return CheckControlWordEvent.Invoke(controlWord);
         }
+
+        #endregion *** End of Methods ***
     }
 }
