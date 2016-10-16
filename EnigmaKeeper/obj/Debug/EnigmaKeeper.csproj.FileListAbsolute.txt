@@ -18,8 +18,7 @@ D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.Properties.Resources.res
 D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.csproj.GenerateResource.Cache
 D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.exe
 D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.pdb
-D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.NewPasswordWindow.resources
-D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.GodPasswordWindow.resources
 D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.MainForm.resources
 D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.BL.dll
 D:\Git\EnigmaKeeper\EnigmaKeeper\bin\Debug\EnigmaKeeper.BL.pdb
+D:\Git\EnigmaKeeper\EnigmaKeeper\obj\Debug\EnigmaKeeper.View.SettingsForm.resources

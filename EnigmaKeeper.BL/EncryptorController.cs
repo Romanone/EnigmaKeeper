@@ -8,7 +8,7 @@ namespace EnigmaKeeper.Encryptor
         string StartEncrypt(string text, string key);
     }
     
-    internal class XOR_EncryptorController : IEncryptor
+    public class XOR_EncryptorController : IEncryptor
     {
         #region *** Properties ***
 
@@ -52,7 +52,7 @@ namespace EnigmaKeeper.Encryptor
                 {
                     int a = i * (strPreKey.Length / divides);                           //Start index
                     int b = strPreKey.Length / divides;                                 //Lenght         
-                    Keys.Add(Convert.ToUInt64(strPreKey.Substring((int)a, (int)b)));    //Ignores fractional share here
+                    Keys.Add(Convert.ToUInt64(strPreKey.Substring(a, b)));    //Ignores fractional share here
                 }
             }
             else

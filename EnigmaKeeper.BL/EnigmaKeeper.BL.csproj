@@ -40,6 +40,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="DB_StorageController.cs" />
     <Compile Include="EncryptorController.cs" />
     <Compile Include="StorageController.cs" />
     <Compile Include="Model.cs" />

@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Windows.Forms;
 using EnigmaKeeper.BL;
+using EnigmaKeeper.Encryptor;
+using EnigmaKeeper.View;
 
 namespace EnigmaKeeper
 {
@@ -40,7 +42,8 @@ namespace EnigmaKeeper
         public MainForm()
         {
             InitializeComponent();
-            new Presenter(this, new Model());
+            new Presenter(this, new Model(new XOR_EncryptorController(), new FILE_StorageController()));
+
         }
 
         #endregion *** End of Constructors ***
@@ -130,6 +133,7 @@ namespace EnigmaKeeper
 
         private void MainForm_Load(object sender, EventArgs e)
         {
+
             FormUpdate();
 
             LoadPasswordFromFile(sender, e);
@@ -248,5 +252,10 @@ namespace EnigmaKeeper
         }
 
         #endregion *** End of Methods ***
+
+        private void settingsToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            new SettingsForm().ShowDialog();
+        }
     }
 }

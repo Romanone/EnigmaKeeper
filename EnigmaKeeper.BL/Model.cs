@@ -33,11 +33,19 @@ namespace EnigmaKeeper.BL
 
         #region *** Constructors ***
 
-        public Model()
+        public Model(object encryptor, object storageController)
         {
             _password = new ConcretePassword();
-            _encryptor = new XOR_EncryptorController();
-            _storageController = new StorageController();            
+
+            if (encryptor is XOR_EncryptorController)
+            {
+                _encryptor = encryptor as XOR_EncryptorController;
+            }
+            
+            if(storageController is FILE_StorageController)
+            {
+                _storageController = storageController as FILE_StorageController;
+            }
         }
 
         #endregion *** End of Constructors ***

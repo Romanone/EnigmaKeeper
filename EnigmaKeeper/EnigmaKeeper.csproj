@@ -47,18 +47,6 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="MessageService.cs" />
-    <Compile Include="View\GodPasswordWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\GodPasswordWindow.Designer.cs">
-      <DependentUpon>GodPasswordWindow.cs</DependentUpon>
-    </Compile>
-    <Compile Include="View\NewPasswordWindow.cs">
-      <SubType>Form</SubType>
-    </Compile>
-    <Compile Include="View\NewPasswordWindow.Designer.cs">
-      <DependentUpon>NewPasswordWindow.cs</DependentUpon>
-    </Compile>
     <Compile Include="View\MainForm.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -68,12 +56,13 @@
     <Compile Include="Presenter\Presenter.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <EmbeddedResource Include="View\GodPasswordWindow.resx">
-      <DependentUpon>GodPasswordWindow.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="View\NewPasswordWindow.resx">
-      <DependentUpon>NewPasswordWindow.cs</DependentUpon>
-    </EmbeddedResource>
+    <Compile Include="View\Settings.cs" />
+    <Compile Include="View\SettingsForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="View\SettingsForm.Designer.cs">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </Compile>
     <EmbeddedResource Include="View\MainForm.resx">
       <DependentUpon>MainForm.cs</DependentUpon>
     </EmbeddedResource>
@@ -86,6 +75,9 @@
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="View\SettingsForm.resx">
+      <DependentUpon>SettingsForm.cs</DependentUpon>
+    </EmbeddedResource>
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Windows.Forms;
-using EnigmaKeeper.BL;
 
 namespace EnigmaKeeper
 {
@@ -16,7 +15,6 @@ namespace EnigmaKeeper
             Application.SetCompatibleTextRenderingDefault(false);
 
             MainForm mainForm = new MainForm();
-            Model model = new Model();
 
             Application.Run(new MainForm());
 

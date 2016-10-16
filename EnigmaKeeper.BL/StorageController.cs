@@ -10,11 +10,11 @@ namespace EnigmaKeeper.BL
         void ReadFromStorage(string path);
     }
 
-    public class StorageController : IStorageController
+    public class FILE_StorageController : IStorageController
     {
         private readonly IPassword _password;
 
-        public StorageController()
+        public FILE_StorageController()
         {
             _password = new ConcretePassword();
         }
